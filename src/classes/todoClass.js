@@ -1,5 +1,5 @@
 class Todo {
-  constructor(title, description, dueDate, priority, note, checklist) {
+  constructor(title = '', description = '', dueDate, priority = 'normal', note = '', checklist = false) {
     this.title = title // string
     this.description = description // string
     this.dueDate = dueDate // ??
