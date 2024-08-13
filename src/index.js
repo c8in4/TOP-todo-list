@@ -1,3 +1,3 @@
 import './style.css'
 
-console.log('test')
+console.log('hello from index.js')
