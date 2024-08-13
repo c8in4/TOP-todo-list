@@ -110,13 +110,33 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/classes/projectClass.js":
+/*!*************************************!*\
+  !*** ./src/classes/projectClass.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Project: () => (/* binding */ Project)\n/* harmony export */ });\nclass Project {\n  constructor(name) {\n    this.name = name\n    this.todoList = [] // array of todos\n  }\n}\n\n\n//# sourceURL=webpack://top-todo-list/./src/classes/projectClass.js?");
+
+/***/ }),
+
+/***/ "./src/classes/todoClass.js":
+/*!**********************************!*\
+  !*** ./src/classes/todoClass.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Todo: () => (/* binding */ Todo)\n/* harmony export */ });\nclass Todo {\n  constructor(title = '', description = '', dueDate, priority = 'normal', note = '', checklist = false) {\n    this.title = title // string\n    this.description = description // string\n    this.dueDate = dueDate // ??\n    this.priority = priority // 'enum'?\n    this.note = note // string\n    this.checklist = checklist // boolean\n  }\n}\n\n\n//# sourceURL=webpack://top-todo-list/./src/classes/todoClass.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\nconsole.log('hello from index.js')\n\n//# sourceURL=webpack://top-todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _classes_todoClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./classes/todoClass */ \"./src/classes/todoClass.js\");\n/* harmony import */ var _classes_projectClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./classes/projectClass */ \"./src/classes/projectClass.js\");\n\n\n\n\nconst listOfTodos = [] // array of todos\nconst listOfProjects = [] // array of projects\n\nlistOfTodos.push(new _classes_todoClass__WEBPACK_IMPORTED_MODULE_1__.Todo('test', ))\nconsole.log(listOfTodos[0])\n\n\n//# sourceURL=webpack://top-todo-list/./src/index.js?");
 
 /***/ })
 
