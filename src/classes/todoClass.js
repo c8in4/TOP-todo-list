@@ -15,3 +15,10 @@ export class Todo {
     // this.checklist = checklist // boolean
   }
 }
+
+export function createTodo(description = '', dueDate, priority = 'normal') {
+  const title = prompt("Todo title:")
+  // const todo = 
+  return new Todo(title, description, dueDate, priority)
+  // listOfProjects[activeProject].todoList.push(todo)
+}

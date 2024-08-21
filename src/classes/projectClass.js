@@ -4,3 +4,8 @@ export class Project {
     this.todoList = [] // array of todos
   }
 }
+
+export function createProject() {
+  const name = prompt("Project name:")
+  return new Project(name)
+}
