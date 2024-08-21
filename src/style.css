@@ -32,6 +32,7 @@ button {
   border-radius: 0.5rem;
   border: none;
   outline: transparent;
+  background-color: var(--secondary-bg-clr);
   font-weight: bold;
   cursor: pointer;
 }
@@ -56,11 +57,10 @@ button:hover {
 }
 
 button#createProject {
-  margin: 0 auto;
+  margin: 0 auto 1rem auto;
 }
 
 #listOfProjects {
-  margin-top: 1em;
   list-style: none;
   flex: 1;
   overflow: auto;
@@ -90,7 +90,7 @@ main {
 
 .mainTop {
   padding: 1rem;
-  background-color: var(--secondary-bg-clr);
+  /* background-color: var(--secondary-bg-clr); */
   box-shadow: var(--todo-card-box-shadow);
 }
 
@@ -104,7 +104,7 @@ main {
 }
 
 .todoCard {
-  background-color: var(--secondary-bg-clr);
+  /* background-color: var(--secondary-bg-clr); */
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: var(--todo-card-box-shadow);
