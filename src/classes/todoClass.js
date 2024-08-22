@@ -19,6 +19,6 @@ export class Todo {
 export function createTodo(description = '', dueDate, priority = 'normal') {
   const title = prompt("Todo title:")
   // const todo = 
-  return new Todo(title, description, dueDate, priority)
+  return title ? new Todo(title, description, dueDate, priority) : false
   // listOfProjects[activeProject].todoList.push(todo)
 }

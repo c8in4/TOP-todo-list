@@ -8,12 +8,14 @@ export const listOfProjects = [new Project('My Todos')];
 
 const createProjectButton = document.querySelector('#createProject')
 createProjectButton.addEventListener('click', () => {
-  listOfProjects.push(createProject())
+  const newProject = createProject()
+  if (newProject) listOfProjects.push(newProject)
   render()
 });
 
 const createTodoButton = document.querySelector('#createTodo')
 createTodoButton.addEventListener('click', () => {
-  listOfProjects[activeProject].todoList.push(createTodo())
+  const newTodo = createTodo()
+  if (newTodo) listOfProjects[activeProject].todoList.push(newTodo)
   render()
 })

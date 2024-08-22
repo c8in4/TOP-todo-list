@@ -7,5 +7,5 @@ export class Project {
 
 export function createProject() {
   const name = prompt("Project name:")
-  return new Project(name)
+  return name ? new Project(name) : false
 }
