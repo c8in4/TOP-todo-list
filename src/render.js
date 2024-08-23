@@ -16,9 +16,15 @@ function renderSidebar() {
     itemButton.textContent = project.name;
     itemButton.addEventListener('click', () => {
       activeProject = index;
-      renderTodos();
+      render();
     });
-
+    //
+    if (index == activeProject) {
+      listItem.classList.add('activeProject')
+    } else {
+      listItem.classList.remove('activeProject')
+    }
+    //
     listItem.appendChild(itemButton);
     unorderedListOfProjects.appendChild(listItem);
   });
