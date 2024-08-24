@@ -1,27 +1,19 @@
 import { listOfProjects, getActiveProject, setActiveProject, createProject, createTodo, deleteProject, deleteTodo } from './listOfProjects';
 
 export const Render = () => {
-  renderSidebar();
-  renderTodos();
+  renderSidebar()
+  renderMain();
 }
 
 const unorderedListOfProjects = document.querySelector('#listOfProjects');
 const todoContainer = document.querySelector('#todoContainer');
-const projectHeader = document.querySelector('#projectHeader');
-
+const mainTopDiv = document.querySelector('#mainTop')
 const createProjectButton = document.querySelector('#createProject')
-const createTodoButton = document.querySelector('#createTodo')
-
 
 createProjectButton.addEventListener('click', () => {
   createProject()
   Render()
 });
-
-createTodoButton.addEventListener('click', () => {
-  createTodo()
-  Render()
-})
 
 function renderSidebar() {
   unorderedListOfProjects.innerHTML = '';
@@ -43,35 +35,58 @@ function renderSidebar() {
       listItem.classList.remove('activeProject')
     }
 
-    const deleteButton = document.createElement('button')
-    deleteButton.classList.add('deleteButton')
-    deleteButton.dataset.index = index
+    // const deleteButton = document.createElement('button')
+    // deleteButton.classList.add('deleteButton')
+    // deleteButton.dataset.index = index
 
-    deleteButton.addEventListener('click', (e) => {
-      const index = e.target.dataset.index
-      deleteProject(index)
-      setActiveProject(index -1)
-      Render()
-    })
+    // deleteButton.addEventListener('click', (e) => {
+    //   const index = e.target.dataset.index
+    //   deleteProject(index)
+    //   Render()
+    // })
 
-    listItem.append(itemButton, deleteButton);
+    listItem.appendChild(itemButton);
     unorderedListOfProjects.appendChild(listItem);
   });
 }
 
-function renderTodos() {
+function renderMain() {
   const project = listOfProjects[getActiveProject()]
+  mainTopDiv.innerHTML = ''
   todoContainer.innerHTML = '';
-  projectHeader.innerHTML = ''
 
   if (project) {
-    projectHeader.textContent = project.name;
-    
-    project.todoList.forEach((todo, index) => {
-      todoContainer.appendChild(CreateTodoCard(todo, index));
-    });
+    renderProjectHeader(project)
+    renderTodos(project)
   }
 
+  if (mainTopDiv.innerHTML == '') {
+    mainTopDiv.textContent = 'You have no projects'
+  }
+
+}
+
+function renderProjectHeader(project) {
+  const projectHeader = document.createElement('h2')
+  projectHeader.id = 'projectHeader'
+  projectHeader.textContent = project.name;
+
+  const createTodoButton = document.createElement('button')
+  createTodoButton.id = 'createTodo'
+  createTodoButton.textContent = 'Add Task'
+
+  createTodoButton.addEventListener('click', () => {
+    createTodo()
+    Render()
+  })
+
+  mainTopDiv.append(projectHeader, createTodoButton)
+}
+
+function renderTodos(project) {
+  project.todoList.forEach((todo, index) => {
+    todoContainer.appendChild(CreateTodoCard(todo, index));
+  });
 }
 
 const CreateTodoCard = (todo, index) => {

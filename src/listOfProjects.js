@@ -18,19 +18,25 @@ export function createProject() {
   if (name) {
     const newProject = new Project(name)
     listOfProjects.push(newProject)
+    setActiveProject(listOfProjects.length - 1)
   }
 }
 
 export function createTodo(description = '', dueDate, priority = 'normal') {
   const title = prompt("Todo title:")
-  if (title) {
+  if (title && listOfProjects[activeProjectIndex]) {
     const newTodo = new Todo(title, description, dueDate, priority)
     listOfProjects[activeProjectIndex].todoList.push(newTodo)
-  } 
+  }
 }
 
 export function deleteProject(index) {
   listOfProjects.splice(index, 1)
+  if (index <= activeProjectIndex) {
+    activeProjectIndex = (activeProjectIndex--)
+    ? activeProjectIndex--
+    : 0
+  }
 }
 
 export function deleteTodo(projectIndex, todoIndex) {
