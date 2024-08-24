@@ -1,11 +1,6 @@
 export class Project {
   constructor(name) {
     this.name = name
-    this.todoList = [] // array of todos
+    this.todoList = []
   }
-}
-
-export function createProject() {
-  const name = prompt("Project name:")
-  return name ? new Project(name) : false
 }

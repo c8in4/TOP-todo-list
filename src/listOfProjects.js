@@ -1,21 +1,38 @@
-import { createProject } from './classes/projectClass';
-import { createTodo } from './classes/todoClass';
 import { Project } from './classes/projectClass';
-import { render } from './render';
-import { activeProject } from './render';
+import { Todo } from "./classes/todoClass";
 
 export const listOfProjects = [new Project('My Todos')];
 
-const createProjectButton = document.querySelector('#createProject')
-createProjectButton.addEventListener('click', () => {
-  const newProject = createProject()
-  if (newProject) listOfProjects.push(newProject)
-  render()
-});
+let activeProjectIndex = 0
 
-const createTodoButton = document.querySelector('#createTodo')
-createTodoButton.addEventListener('click', () => {
-  const newTodo = createTodo()
-  if (newTodo) listOfProjects[activeProject].todoList.push(newTodo)
-  render()
-})
+export function getActiveProject() {
+  return activeProjectIndex
+}
+
+export function setActiveProject(newIndex) {
+  activeProjectIndex = newIndex
+}
+
+export function createProject() {
+  const name = prompt("Project name:")
+  if (name) {
+    const newProject = new Project(name)
+    listOfProjects.push(newProject)
+  }
+}
+
+export function createTodo(description = '', dueDate, priority = 'normal') {
+  const title = prompt("Todo title:")
+  if (title) {
+    const newTodo = new Todo(title, description, dueDate, priority)
+    listOfProjects[activeProjectIndex].todoList.push(newTodo)
+  } 
+}
+
+export function deleteProject(index) {
+  listOfProjects.splice(index, 1)
+}
+
+export function deleteTodo(projectIndex, todoIndex) {
+  listOfProjects[projectIndex].todoList.splice(todoIndex, 1)
+}
