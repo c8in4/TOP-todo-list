@@ -1,15 +1,15 @@
 :root {
-  --accent-bg-clr: #B0228C;
+  --accent-bg-clr: #b0228c;
   --accent-variant-clr: #662463;
-  --magenta-clr: #EA3788;
-  --light-coral-clr: #E56B70;
-  --salmon-pink-clr: #F391A0;
+  --magenta-clr: #ea3788;
+  --light-coral-clr: #e56b70;
+  --salmon-pink-clr: #f391a0;
 
   --black-clr: #000;
   --white-clr: #fff;
 
   --secondary-bg-clr: #eee;
-  --todo-card-box-shadow: 2px 2px 5px 0px #666
+  --todo-card-box-shadow: 2px 2px 5px 0px #666;
 }
 
 *,
@@ -122,13 +122,22 @@ li.activeProject {
   background-color: var(--accent-variant-clr);
 }
 
-/* 
-#listOfProjects li button.deleteButton {
-  background-image: url(./icons/delete_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png);
+button.deleteButton {
+  background-image: url(./icons/delete_24dp_000000.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 1rem;
-} */
+  padding: 1rem;
+}
+
+button.editButton {
+  background-image: url(./icons/edit_24dp_000000.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1rem;
+  padding: 1rem;
+  margin: 0.5rem;
+}
 
 main {
   position: relative;
@@ -146,8 +155,17 @@ main {
   box-shadow: var(--todo-card-box-shadow);
 }
 
+.headerContainer {
+  display: flex;
+  align-items: center;
+}
+
 #projectHeader {
   color: var(--accent-bg-clr);
+}
+
+#createTodo {
+  display: block;
 }
 
 #todoContainer {
