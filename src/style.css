@@ -56,7 +56,8 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:hover,
+button:focus {
   position: relative;
   top: -1px;
   left: -1px;
@@ -98,7 +99,8 @@ button#createProject {
   color: var(--white-clr);
 }
 
-#listOfProjects button:hover {
+#listOfProjects button:hover,
+#listOfProjects button:focus {
   box-shadow: none;
   top: 0;
   left: 0;
@@ -108,7 +110,8 @@ button#createProject {
   flex: 1;
 }
 
-#listOfProjects li button.itemButton:hover {
+#listOfProjects li button.itemButton:hover,
+#listOfProjects li button.itemButton:focus {
   background-color: var(--magenta-clr);
   border-radius: 0.5rem;
 }
