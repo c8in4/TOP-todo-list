@@ -26,10 +26,82 @@
 body {
   /* font-size: 125%; */
   min-height: 100dvh;
-  display: grid;
-  grid-template-columns: auto 1fr;
-
+  display: flex;
   font-family: sans-serif;
+  overflow-x: hidden;
+}
+
+dialog {
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  width: minmax(max-content, 65ch);
+  border-radius: 0.5rem;
+  border: none;
+}
+
+dialog::backdrop {
+  background-color: #000;
+  opacity: 0.4;
+}
+
+dialog header {
+  padding: 1rem;
+  color: var(--accent-variant-clr);
+  background-color: var(--salmon-pink-clr);
+  text-align: center;
+}
+
+dialog form {
+  padding: 2rem;
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-content: center;
+  justify-items: center;
+  gap: 1rem;
+}
+
+.dialogFormButtons {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dialogFormButtons button {
+  width: 100%;
+}
+
+input {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  border: none;
+  background-color: var(--secondary-bg-clr);
+  border-radius: 0.5rem;
+}
+
+input:hover,
+input:focus {
+  color: var(--accent-variant-clr);
+  box-shadow: var(--todo-card-box-shadow);
+  outline: none;
+}
+
+/* The Close Button */
+.close {
+  background: none;
+  color: #aaaaaa;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  inset: 0;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: none;
 }
 
 h1,
@@ -67,6 +139,7 @@ button:focus {
 
 #sidebar {
   position: sticky;
+  width: minmax(min-content, max-content);
   top: 0;
   height: 100dvh;
   padding: 1rem;
@@ -143,6 +216,8 @@ button.editButton {
 }
 
 main {
+  min-width: 66%;
+  flex: 1;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -164,7 +239,7 @@ main {
 }
 
 #projectHeader {
-  color: var(--accent-bg-clr);
+  color: var(--accent-variant-clr);
 }
 
 #createTodo {

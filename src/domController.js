@@ -7,7 +7,7 @@ import {
   editProject,
   deleteProject,
   createTodo,
-  deleteTodo,
+  // deleteTodo,
 } from "./listOfProjects"
 
 export const Render = () => {
@@ -19,13 +19,28 @@ export const Render = () => {
 const unorderedListOfProjects = document.querySelector("#listOfProjects")
 const todoContainer = document.querySelector("#todoContainer")
 const mainTopDiv = document.querySelector("#mainTop")
+const projectDialog = document.querySelector("#projectDialog")
 const createProjectButton = document.querySelector("#createProject")
+
+const projectNameInput = document.querySelector("#projectName")
+const saveProjectButton = document.querySelector("#saveFormButton")
 
 createProjectButton.addEventListener("click", createProjectButtonEventHandler)
 function createProjectButtonEventHandler() {
-  createProject()
-  Render()
+  projectDialog.showModal()
 }
+
+projectDialog.addEventListener("close", () => {
+  projectNameInput.value = ""
+})
+
+saveProjectButton.addEventListener('click', (event) => {
+  event.preventDefault()
+  projectDialog.close(projectNameInput.value)
+  createProject(projectDialog.returnValue)
+  Render()
+})
+
 
 function renderSidebar() {
   unorderedListOfProjects.innerHTML = ""
@@ -78,7 +93,7 @@ function renderProjectHeader(project) {
   const editButton = document.createElement("button")
   editButton.classList.add("editButton")
 
-  editButton.addEventListener("click", (e) => {
+  editButton.addEventListener("click", () => {
     editProject()
     Render()
   })
@@ -86,7 +101,7 @@ function renderProjectHeader(project) {
   const deleteButton = document.createElement("button")
   deleteButton.classList.add("deleteButton")
 
-  deleteButton.addEventListener("click", (e) => {
+  deleteButton.addEventListener("click", () => {
     deleteProject()
     Render()
   })

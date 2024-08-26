@@ -24,8 +24,7 @@ export function setActiveProject(newIndex) {
   activeProjectIndex = newIndex
 }
 
-export function createProject() {
-  const name = prompt("Project name:")
+export function createProject(name) {
   if (name) {
     const newProject = new Project(name)
     listOfProjects.push(newProject)

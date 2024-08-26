@@ -1,35 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo-List</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo-List</title>
-</head>
+  <body>
+    <div id="sidebar">
+      <h1>Todo-App</h1>
 
-<body>
-  <div id="sidebar">
-    <h1>Todo-App</h1>
-    <button id="createProject">New Project</button>
-    <h3>Projects:</h3>
-    <ul id="listOfProjects">
-      
-    </ul>
-    <footer>
-      <small>made by c8in4</small>
-    </footer>
-  </div>
-  
-  <main>
-    <div id="mainTop">
-   
+      <dialog id="projectDialog">
+        <header>
+          <h4 id="dialogHeader">Create new Project</h4>
+        </header>
+        <form method="dialog">
+          <label for="projectName">
+            <p>Project name:</p>
+            <input autofocus id="projectName" type="text" />
+          </label>
+          <div class="dialogFormButtons">
+            <button id="saveFormButton" value="default">Save</button>
+            <button value="cancelFormButton" formmethod="dialog">Cancel</button>
+          </div>
+        </form>
+      </dialog>
+
+      <button id="createProject">New Project</button>
+
+      <h3>My Projects:</h3>
+      <ul id="listOfProjects"></ul>
+      <footer>
+        <small>made by c8in4</small>
+      </footer>
     </div>
 
-    <div id="todoContainer">
-    </div>
+    <main>
+      <div id="mainTop"></div>
 
-  </main>
-
-</body>
-
+      <div id="todoContainer"></div>
+    </main>
+  </body>
 </html>
