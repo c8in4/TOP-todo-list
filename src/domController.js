@@ -9,6 +9,7 @@ import {
   createTodo,
   // deleteTodo,
 } from "./listOfProjects"
+import { CreateProjectDialog } from "./modalCreator"
 
 export const Render = () => {
   renderSidebar()
@@ -19,28 +20,27 @@ export const Render = () => {
 const unorderedListOfProjects = document.querySelector("#listOfProjects")
 const todoContainer = document.querySelector("#todoContainer")
 const mainTopDiv = document.querySelector("#mainTop")
-const projectDialog = document.querySelector("#projectDialog")
+const dialog = document.querySelector("#dialog")
 const createProjectButton = document.querySelector("#createProject")
 
-const projectNameInput = document.querySelector("#projectName")
-const saveProjectButton = document.querySelector("#saveFormButton")
+const saveFormButton = document.querySelector("#saveFormButton")
 
-createProjectButton.addEventListener("click", createProjectButtonEventHandler)
-function createProjectButtonEventHandler() {
-  projectDialog.showModal()
+createProjectButton.addEventListener("click", () => {
+  CreateProjectDialog("Create new Project")
+  saveFormButton.addEventListener("click", saveNewProjectEvent)
+  dialog.showModal()
+})
+
+function saveNewProjectEvent() {
+  const projectName = document.querySelector("#projectName")
+  createProject(projectName.value)
+  Render()
 }
 
-projectDialog.addEventListener("close", () => {
-  projectNameInput.value = ""
-})
-
-saveProjectButton.addEventListener('click', (event) => {
-  event.preventDefault()
-  projectDialog.close(projectNameInput.value)
-  createProject(projectDialog.returnValue)
+function editProjectEvent(projectName) {
+  editProject(projectName)
   Render()
-})
-
+}
 
 function renderSidebar() {
   unorderedListOfProjects.innerHTML = ""
@@ -94,8 +94,14 @@ function renderProjectHeader(project) {
   editButton.classList.add("editButton")
 
   editButton.addEventListener("click", () => {
-    editProject()
-    Render()
+    CreateProjectDialog("Edit Project")
+    const projectName = document.querySelector("#projectName")
+    projectName.value = listOfProjects[getActiveProject()].name
+
+    saveFormButton.addEventListener("click", () => {
+      editProjectEvent(projectName.value)
+    })
+    dialog.showModal()
   })
 
   const deleteButton = document.createElement("button")

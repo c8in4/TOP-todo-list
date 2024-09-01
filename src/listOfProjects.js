@@ -32,11 +32,7 @@ export function createProject(name) {
   }
 }
 
-export function editProject() {
-  const newName = prompt(
-    "New Project name:",
-    listOfProjects[activeProjectIndex].name
-  )
+export function editProject(newName) {
   listOfProjects[activeProjectIndex].name = newName
     ? newName
     : listOfProjects[activeProjectIndex].name
