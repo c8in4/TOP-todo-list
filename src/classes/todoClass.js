@@ -1,17 +1,17 @@
 export class Todo {
   constructor(
     title = '',
-    description = '',
+    note = '',
     dueDate,
     priority = 'normal',
-    // note = '',
+    // description = '',
     // checklist = false
   ) {
     this.title = title
-    this.description = description
+    this.note = note
     this.dueDate = dueDate
     this.priority = priority
-    // this.note = note
+    // this.description = description
     // this.checklist = checklist
   }
 }

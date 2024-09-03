@@ -1,3 +1,4 @@
+import { RenderTodoCard } from "./RenderTodoCard"
 import {
   listOfProjects,
   saveProjects,
@@ -34,11 +35,14 @@ createProjectButton.addEventListener("click", () => {
 function saveNewProjectEvent() {
   const projectName = document.querySelector("#projectName")
   createProject(projectName.value)
+  saveFormButton.removeEventListener("click", saveNewProjectEvent)
   Render()
 }
 
-function editProjectEvent(projectName) {
-  editProject(projectName)
+function editProjectEvent() {
+  const projectName = document.querySelector("#projectName")
+  editProject(projectName.value)
+  saveFormButton.removeEventListener("click", editProjectEvent)
   Render()
 }
 
@@ -97,10 +101,7 @@ function renderProjectHeader(project) {
     CreateProjectDialog("Edit Project")
     const projectName = document.querySelector("#projectName")
     projectName.value = listOfProjects[getActiveProject()].name
-
-    saveFormButton.addEventListener("click", () => {
-      editProjectEvent(projectName.value)
-    })
+    saveFormButton.addEventListener("click", editProjectEvent)
     dialog.showModal()
   })
 
@@ -128,14 +129,6 @@ function renderProjectHeader(project) {
 
 function renderTodos(project) {
   project.todoList.forEach((todo, index) => {
-    todoContainer.appendChild(CreateTodoCard(todo, index))
+    todoContainer.appendChild(RenderTodoCard(todo, index))
   })
-}
-
-const CreateTodoCard = (todo, index) => {
-  const todoCardDiv = document.createElement("div")
-  todoCardDiv.classList.add("todoCard")
-  todoCardDiv.dataset.todoIndex = index
-  todoCardDiv.textContent = todo.title
-  return todoCardDiv
 }

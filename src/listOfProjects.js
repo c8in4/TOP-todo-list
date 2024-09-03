@@ -45,10 +45,10 @@ export function deleteProject(index = activeProjectIndex) {
   }
 }
 
-export function createTodo(description = "", dueDate, priority = "normal") {
+export function createTodo(note = "default note", dueDate = '03 Sep 2024', priority = "normal") {
   const title = prompt("Todo title:")
   if (title && listOfProjects[activeProjectIndex]) {
-    const newTodo = new Todo(title, description, dueDate, priority)
+    const newTodo = new Todo(title, note, dueDate, priority)
     listOfProjects[activeProjectIndex].todoList.push(newTodo)
   }
 }

@@ -9,11 +9,9 @@ dialog.addEventListener("close", () => {
 
 export const CreateProjectDialog = (headerText) => {
   dialogHeader.textContent = headerText
-  const projectNameInput = createTextInput('Project Name:', 'projectName')
+  const projectNameInput = createTextInput("Project Name:", "projectName")
   dialogFormContent.append(projectNameInput)
 }
-
-
 
 function createTextInput(label, id) {
   const inputLabel = document.createElement("label")

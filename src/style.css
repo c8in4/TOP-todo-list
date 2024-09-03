@@ -248,17 +248,38 @@ main {
 
 #todoContainer {
   padding: 1rem;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, clamp(150px, 30%, 65ch));
-  grid-auto-rows: min(150px, 250px);
-  gap: 1rem;
+  grid-template-columns: minmax(min-content, 75ch);
   justify-content: center;
+  gap: 1rem;
 }
 
 .todoCard {
   padding: 1rem;
+  
   border-radius: 1rem;
   box-shadow: var(--todo-card-box-shadow);
+}
+
+.todoCardHeaderDiv {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todoCardHeader {
+  color: var(--accent-variant-clr);
+  font-size: 1.2em;
+}
+
+.todoCardNote {
+  color: var(--magenta-clr);
+}
+
+.hidden {
+  display: none;
 }
 
 footer {
