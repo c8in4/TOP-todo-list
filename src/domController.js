@@ -8,14 +8,35 @@ import {
   editProject,
   deleteProject,
   createTodo,
+  editTodo,
   // deleteTodo,
 } from "./listOfProjects"
-import { CreateProjectDialog } from "./modalCreator"
+import { CreateProjectDialog, CreateTodoDialog } from "./modalCreator"
 
 export const Render = () => {
   renderSidebar()
   renderMain()
   saveProjects()
+  TodoCardExpander()
+}
+
+const TodoCardExpander = () => {
+  for (const todo of todoContainer.children) {
+    todo.addEventListener("click", () => {
+      const todoNote = todo.lastChild
+      const className = "hidden"
+  
+      // if (todoNote.classList.contains(className)) {
+      //   alert("yes")
+      //   todoNote.classList.remove(className)
+      // } else {
+      //   alert('no')
+      // }
+      todoNote.classList.toggle(className)
+      // Render()
+      // renderTodos()
+    })
+  }
 }
 
 const unorderedListOfProjects = document.querySelector("#listOfProjects")
@@ -118,9 +139,18 @@ function renderProjectHeader(project) {
   createTodoButton.textContent = "Add Task"
 
   createTodoButton.addEventListener("click", () => {
-    createTodo()
-    Render()
+    CreateTodoDialog("Create new Task")
+    saveFormButton.addEventListener("click", saveNewTodoEvent)
+    dialog.showModal()
   })
+
+  function saveNewTodoEvent() {
+    const todoTitle = document.querySelector("#todoTitle")
+    const todoNote = document.querySelector("#todoNote")
+    createTodo(todoTitle.value, todoNote.value)
+    saveFormButton.removeEventListener("click", saveNewTodoEvent)
+    Render()
+  }
 
   headerDiv.append(projectHeader, editButton, deleteButton)
 
@@ -128,7 +158,23 @@ function renderProjectHeader(project) {
 }
 
 function renderTodos(project) {
-  project.todoList.forEach((todo, index) => {
-    todoContainer.appendChild(RenderTodoCard(todo, index))
-  })
+  if (project.todoList) {
+    project.todoList.forEach((todo, index) => {
+      todoContainer.appendChild(RenderTodoCard(todo, index))
+    })
+  }
 }
+
+////////////////////////////////
+// trying to get the "expand"-functionality to work
+
+// todoContainer.addEventListener("click", (e) => {
+//   const target = e.target
+//   if (target && target.classList != 'editButton' && target.classList != 'deleteButton') {
+//     // const todoNote = document.querySelector('')
+//     // target.dataset.todoIndex
+
+//     console.log(target.dataset.todoIndex)
+
+//   }
+// })

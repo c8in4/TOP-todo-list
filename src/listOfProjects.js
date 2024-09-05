@@ -45,14 +45,19 @@ export function deleteProject(index = activeProjectIndex) {
   }
 }
 
-export function createTodo(note = "default note", dueDate = '03 Sep 2024', priority = "normal") {
-  const title = prompt("Todo title:")
+export function createTodo(title, note = "default note", dueDate = '03 Sep 2024', priority = "normal") {
   if (title && listOfProjects[activeProjectIndex]) {
     const newTodo = new Todo(title, note, dueDate, priority)
     listOfProjects[activeProjectIndex].todoList.push(newTodo)
   }
 }
 
-export function deleteTodo(projectIndex, todoIndex) {
-  listOfProjects[projectIndex].todoList.splice(todoIndex, 1)
+export function editTodo(newTitle, newNote) {
+  // const todo = listOfProjects[activeProjectIndex].todoList[]
+  // if (newTitle && newNote) {
+  // }
+}
+
+export function deleteTodo(todoIndex) {
+  listOfProjects[activeProjectIndex].todoList.splice(todoIndex, 1)
 }

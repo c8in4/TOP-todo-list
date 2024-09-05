@@ -1,6 +1,6 @@
-const dialog = document.querySelector("#dialog")
-const dialogHeader = document.querySelector("#dialogHeader")
-const dialogFormContent = document.querySelector("#dialogFormContent")
+export const dialog = document.querySelector("#dialog")
+export const dialogHeader = document.querySelector("#dialogHeader")
+export const dialogFormContent = document.querySelector("#dialogFormContent")
 
 dialog.addEventListener("close", () => {
   dialogHeader.textContent = ""
@@ -11,6 +11,15 @@ export const CreateProjectDialog = (headerText) => {
   dialogHeader.textContent = headerText
   const projectNameInput = createTextInput("Project Name:", "projectName")
   dialogFormContent.append(projectNameInput)
+}
+
+export const CreateTodoDialog = (headerText) => {
+  dialogHeader.textContent = headerText
+  const todoTitleInput = createTextInput("Todo Title:", "todoTitle")
+
+  const todoNoteTextarea = createTextarea("Note:", "todoNote")
+
+  dialogFormContent.append(todoTitleInput, todoNoteTextarea)
 }
 
 function createTextInput(label, id) {

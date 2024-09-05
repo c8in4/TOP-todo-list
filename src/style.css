@@ -64,6 +64,7 @@ dialog form {
 .dialogFormButtons {
   width: 100%;
   display: flex;
+  flex-direction: row-reverse;
   gap: 0.5rem;
 }
 
@@ -71,9 +72,11 @@ dialog form {
   width: 100%;
 }
 
-input {
+input,
+textarea {
   padding: 0.5rem 1rem;
   margin: 0.5rem 0;
+  width: 100%;
   border: none;
   background-color: var(--secondary-bg-clr);
   border-radius: 0.5rem;
@@ -212,7 +215,10 @@ button.editButton {
   background-position: center;
   background-size: 1rem;
   padding: 1rem;
-  margin: 0.5rem;
+}
+
+button + button {
+  margin-left: 0.5rem;
 }
 
 main {
@@ -256,8 +262,7 @@ main {
 }
 
 .todoCard {
-  padding: 1rem;
-  
+  padding: 0.5rem 1rem;
   border-radius: 1rem;
   box-shadow: var(--todo-card-box-shadow);
 }
@@ -265,17 +270,21 @@ main {
 .todoCardHeaderDiv {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .todoCardHeader {
+  padding: 0;
+  flex: 1;
   color: var(--accent-variant-clr);
   font-size: 1.2em;
 }
 
 .todoCardNote {
   color: var(--magenta-clr);
+  display: inline;
 }
 
 .hidden {

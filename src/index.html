@@ -7,26 +7,21 @@
   </head>
 
   <body>
+    <dialog id="dialog">
+      <header>
+        <h4 id="dialogHeader">Dialog Header</h4>
+      </header>
+      <form id="dialogForm" method="dialog">
+        <div id="dialogFormContent"></div>
+        <div class="dialogFormButtons">
+          <button id="saveFormButton" value="default">Save</button>
+          <button value="cancelFormButton" formmethod="dialog">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
     <div id="sidebar">
       <h1>Todo-App</h1>
-
-      <dialog id="dialog">
-        <header>
-          <h4 id="dialogHeader">Dialog Header</h4>
-        </header>
-        <form id="dialogForm" method="dialog">
-          <div id="dialogFormContent">
-            <!-- <label for="projectName">
-              <p>Project name:</p>
-              <input autofocus id="projectName" type="text" />
-            </label> -->
-          </div>
-          <div class="dialogFormButtons">
-            <button id="saveFormButton" value="default">Save</button>
-            <button value="cancelFormButton" formmethod="dialog">Cancel</button>
-          </div>
-        </form>
-      </dialog>
 
       <button id="createProject">New Project</button>
 
