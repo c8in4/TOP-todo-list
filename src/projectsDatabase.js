@@ -1,34 +1,52 @@
-import Project from "./classes/project"
-import Todo from "./classes/todo"
-
 let listOfProjects = []
 
-function addProjectToListOfProjects(newProject) {
+export function addProjectToListOfProjects(newProject) {
   listOfProjects.push(newProject)
 }
 
-function removeProjectFromListOfProjects(projectIndex) {
+export function removeProjectFromListOfProjects(projectIndex) {
   listOfProjects.splice(projectIndex, 1)
 }
 
-function addTodoToProject(projectIndex, todo) {
+export function addTodoToProject(projectIndex, todo) {
   listOfProjects[projectIndex].addTodo(todo)
 }
 
-function removeTodoFromProject(projectIndex, todoIndex) {
+export function removeTodoFromProject(projectIndex, todoIndex) {
   listOfProjects[projectIndex].removeTodo(todoIndex)
 }
+
+//////////////////////////////////
+// only for testing:
+// TODO: remove this!
+import Project from "./classes/project"
+import Todo from "./classes/todo"
+/////////////////////////////////////////
 
 export function createDefaultProject() {
   const defaultProject = new Project("Default Project")
   const exampleTodo = new Todo(
     "Example Todo",
+    "normal",
     "This is just an example of a Todo with a description",
     "",
-    "normal",
   )
   defaultProject.addTodo(exampleTodo)
   addProjectToListOfProjects(defaultProject)
+
+  //////////////////////////////////////////////////////////////
+  // only for testing
+  // TODO: remove this!
+  const testProject = new Project("Test Project")
+  const testTodo = new Todo("test todo", "normal")
+  testProject.addTodo(testTodo)
+  addProjectToListOfProjects(testProject)
+
+  const testProject2 = new Project("Test Project 2")
+  const testTodo2 = new Todo("test todo 2", "normal", "this is just some thing")
+  testProject2.addTodo(testTodo2)
+  addProjectToListOfProjects(testProject2)
+  //////////////////////////////////////////////////////////////
 }
 
 export function getListOfProjects() {
@@ -36,9 +54,9 @@ export function getListOfProjects() {
 }
 
 export function saveProjects() {
-  const projectJson = JSON.stringify(listOfProjects)
+  const projectJson = JSON.stringify(getListOfProjects())
   localStorage.setItem("projects", projectJson)
-  console.log("Projects saved to local storage")
+  console.info("Projects saved to local storage")
 }
 
 export function loadProjects() {
@@ -46,35 +64,11 @@ export function loadProjects() {
   const parsedProjects = JSON.parse(projects)
   if (projects) {
     listOfProjects = parsedProjects
-    console.log("Loaded projects from local storage")
+    console.info("Loaded projects from local storage")
   } else {
     createDefaultProject()
-    console.log(
+    console.info(
       "No local projects found. Created default project with example todo",
     )
   }
 }
-
-////////////////////////////////////////////////////////////////
-// testing
-// console.group("testing of projects database")
-
-// console.log(listOfProjects)
-
-// createDefaultProject()
-// console.log(listOfProjects)
-
-// const newTodo = new Todo("test", "desc", "today", "none")
-// addTodoToProject(0, newTodo)
-
-// removeTodoFromProject(0, 0)
-// removeProjectFromListOfProjects(0)
-// // listOfProjects = []
-// // console.log(getListOfProjects())
-
-// // saveProjects()
-// // loadProjects()
-
-// console.log(listOfProjects)
-
-// console.groupEnd()

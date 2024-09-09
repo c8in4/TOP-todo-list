@@ -3,6 +3,7 @@ export default function createEditAndDeleteButtons(
   deleteButtonEvent,
 ) {
   const buttonsDiv = document.createElement("div")
+  buttonsDiv.classList.add('editAndDeleteButtons')
   const editButton = document.createElement("button")
   editButton.classList.add("editButton")
 

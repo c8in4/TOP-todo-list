@@ -14,15 +14,9 @@ export default function renderSidebar(
     const itemButton = document.createElement("button")
     itemButton.classList.add("itemButton")
     itemButton.textContent = project.name
-    itemButton.dataset.index = index
+    itemButton.dataset.index = index // not sure if I will need this
 
-    // itemButton.addEventListener("click", () => {
-    //   // setActiveProject(index)
-    //   // Render()
-    // })
-
-    // not sure if I need this or if there is another way:
-    if (index === activeProject) {
+    if (index == activeProject) {
       listItem.classList.add("activeProject")
     } else {
       listItem.classList.remove("activeProject")
@@ -32,11 +26,3 @@ export default function renderSidebar(
     unorderedListOfProjects.appendChild(listItem)
   })
 }
-
-////////////////////////////////////////////////////////////////
-// testing
-// import { getListOfProjects } from "./projectsDatabase"
-// console.group("testing renderSidebar()")
-// renderSidebar(getListOfProjects())
-// console.log(getListOfProjects())
-// console.groupEnd()
