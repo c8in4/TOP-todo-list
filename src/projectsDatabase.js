@@ -1,53 +1,8 @@
-let listOfProjects = []
-
-export function addProjectToListOfProjects(newProject) {
-  listOfProjects.push(newProject)
-}
-
-export function removeProjectFromListOfProjects(projectIndex) {
-  listOfProjects.splice(projectIndex, 1)
-}
-
-export function addTodoToProject(projectIndex, todo) {
-  listOfProjects[projectIndex].addTodo(todo)
-}
-
-export function removeTodoFromProject(projectIndex, todoIndex) {
-  listOfProjects[projectIndex].removeTodo(todoIndex)
-}
-
-//////////////////////////////////
-// only for testing:
-// TODO: remove this!
+import { format } from "date-fns"
 import Project from "./classes/project"
 import Todo from "./classes/todo"
-/////////////////////////////////////////
 
-export function createDefaultProject() {
-  const defaultProject = new Project("Default Project")
-  const exampleTodo = new Todo(
-    "Example Todo",
-    "normal",
-    "This is just an example of a Todo with a description",
-    "",
-  )
-  defaultProject.addTodo(exampleTodo)
-  addProjectToListOfProjects(defaultProject)
-
-  //////////////////////////////////////////////////////////////
-  // only for testing
-  // TODO: remove this!
-  const testProject = new Project("Test Project")
-  const testTodo = new Todo("test todo", "normal")
-  testProject.addTodo(testTodo)
-  addProjectToListOfProjects(testProject)
-
-  const testProject2 = new Project("Test Project 2")
-  const testTodo2 = new Todo("test todo 2", "normal", "this is just some thing")
-  testProject2.addTodo(testTodo2)
-  addProjectToListOfProjects(testProject2)
-  //////////////////////////////////////////////////////////////
-}
+let listOfProjects = []
 
 export function getListOfProjects() {
   return listOfProjects
@@ -71,4 +26,16 @@ export function loadProjects() {
       "No local projects found. Created default project with example todo",
     )
   }
+}
+
+function createDefaultProject() {
+  const defaultProject = new Project("Default Project")
+  const exampleTodo = new Todo(
+    "Example Todo",
+    "normal",
+    format(new Date(), "yyyy-MM-dd"),
+    "This is just an example of a Todo with a description",
+  )
+  defaultProject.addTodo(exampleTodo)
+  getListOfProjects().push(defaultProject)
 }

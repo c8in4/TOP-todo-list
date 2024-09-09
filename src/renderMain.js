@@ -1,4 +1,5 @@
 import createEditAndDeleteButtons from "./editAndDeleteButtonsCreator"
+import { format } from "date-fns"
 
 const todoContainer = document.querySelector("#todoContainer")
 const mainHeader = document.querySelector("#mainTop")
@@ -22,14 +23,7 @@ function renderMainHeader(project) {
   projectHeader.id = "projectHeader"
   projectHeader.textContent = project.name
 
-  const buttons = createEditAndDeleteButtons(
-    () => {
-      console.info("project edit button pressed")
-    },
-    () => {
-      console.info("project delete button pressed")
-    },
-  )
+  const buttons = createEditAndDeleteButtons()
 
   const createTodoButton = document.createElement("button")
   createTodoButton.id = "createTodo"
@@ -40,11 +34,10 @@ function renderMainHeader(project) {
 }
 
 function renderTodoContainer(project) {
-  project.todoList.forEach((todo, index) => {
-    renderTodoCard(todo, index)
+  project.todoList.forEach((todo) => {
+    renderTodoCard(todo)
   })
-
-  const todoExpanderFunction = (() => {
+  ;(function todoExpander() {
     const allTodoCards = todoContainer.children
 
     for (const todoCard of allTodoCards) {
@@ -58,10 +51,9 @@ function renderTodoContainer(project) {
   })()
 }
 
-function renderTodoCard(todo, index) {
+function renderTodoCard(todo) {
   const todoCardDiv = document.createElement("div")
   todoCardDiv.classList.add("todoCard")
-  todoCardDiv.dataset.todoIndex = index // might not need this
 
   const todoCardHeaderDiv = document.createElement("div")
   todoCardHeaderDiv.classList.add("todoCardHeaderDiv")
@@ -71,19 +63,12 @@ function renderTodoCard(todo, index) {
   title.textContent = todo.title
 
   const dueDate = document.createElement("p")
-  dueDate.textContent = todo.dueDate
+  dueDate.textContent = format(todo.dueDate, "dd MMM yyyy")
 
   const priority = document.createElement("p")
   priority.textContent = todo.priority
 
-  const buttons = createEditAndDeleteButtons(
-    () => {
-      console.info("todo edit button pressed")
-    },
-    () => {
-      console.info("todo delete button pressed")
-    },
-  )
+  const buttons = createEditAndDeleteButtons()
 
   todoCardHeaderDiv.append(title, dueDate, priority, buttons)
 

@@ -1,5 +1,3 @@
-import { format } from "date-fns"
-
 const dialogHeader = document.querySelector("#dialogHeader")
 const dialogFormContent = document.querySelector("#dialogFormContent")
 const dialogFormButtons = document.querySelector(".dialogFormButtons")
@@ -25,7 +23,7 @@ export function createTodoDialog(headerText) {
   const todoDueDate = createDateInput("Due Date:", "todoDueDate")
   groupDiv.append(todoPriorityInput, todoDueDate)
 
-  const todoNoteTextarea = createTextarea("Note:", "todoNote")
+  const todoNoteTextarea = createTextarea("Description:", "todoDescription")
 
   dialogFormContent.append(todoTitleInput, groupDiv, todoNoteTextarea)
   createFormButtons()
@@ -70,6 +68,7 @@ function createSelectInput(label, id) {
   }
 
   const optionNormal = createOption("normal", "Normal")
+  optionNormal.selected = "selected"
   const optionLow = createOption("low", "Low")
   const optionHigh = createOption("high", "High")
 
@@ -87,7 +86,7 @@ function createDateInput(label, id) {
 
   const input = document.createElement("input")
   input.type = "date"
-  input.value = format(new Date(), "yyyy-MM-dd")
+  input.valueAsDate = new Date()
   input.id = id
 
   inputLabel.append(labelText, input)

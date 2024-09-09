@@ -2,11 +2,10 @@ import { getListOfProjects } from "./projectsDatabase"
 
 const unorderedListOfProjects = document.querySelector("#listOfProjects")
 
-export default function renderSidebar(
-  activeProject,
-  listOfProjects = getListOfProjects(),
-) {
+export default function renderSidebar(activeProject) {
   unorderedListOfProjects.innerHTML = ""
+
+  const listOfProjects = getListOfProjects()
 
   listOfProjects.forEach((project, index) => {
     const listItem = document.createElement("li")
@@ -14,7 +13,8 @@ export default function renderSidebar(
     const itemButton = document.createElement("button")
     itemButton.classList.add("itemButton")
     itemButton.textContent = project.name
-    itemButton.dataset.index = index // not sure if I will need this
+    itemButton.dataset.index = index // could be refactored to not need this
+    // would need refactoring of domController.js too
 
     if (index == activeProject) {
       listItem.classList.add("activeProject")
