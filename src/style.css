@@ -23,6 +23,68 @@
   margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0.5em;
+  text-wrap: balance;
+}
+
+h1 {
+  text-align: center;
+}
+
+p,
+li,
+figcaption {
+  text-wrap: pretty;
+  max-width: 65ch;
+}
+
+input,
+textarea,
+select {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  width: 100%;
+  border: none;
+  background-color: var(--secondary-bg-clr);
+  border-radius: 0.5rem;
+}
+
+textarea {
+  resize: none;
+}
+
+input:hover,
+input:focus {
+  color: var(--accent-variant-clr);
+  box-shadow: var(--todo-card-box-shadow);
+  outline: none;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: transparent;
+  color: var(--accent-variant-clr);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  position: relative;
+  top: -1px;
+  left: -1px;
+  color: var(--accent-variant-clr);
+  box-shadow: var(--todo-card-box-shadow);
+}
+
 body {
   /* font-size: 125%; */
   min-height: 100dvh;
@@ -61,80 +123,24 @@ dialog form {
   gap: 1rem;
 }
 
+#dialogFormContent div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#dialogFormContent div label {
+  width: 50%;
+}
+
 .dialogFormButtons {
   width: 100%;
   display: flex;
+  flex-direction: row-reverse;
   gap: 0.5rem;
 }
 
 .dialogFormButtons button {
   width: 100%;
-}
-
-input {
-  padding: 0.5rem 1rem;
-  margin: 0.5rem 0;
-  border: none;
-  background-color: var(--secondary-bg-clr);
-  border-radius: 0.5rem;
-}
-
-input:hover,
-input:focus {
-  color: var(--accent-variant-clr);
-  box-shadow: var(--todo-card-box-shadow);
-  outline: none;
-}
-
-/* The Close Button */
-.close {
-  background: none;
-  color: #aaaaaa;
-  float: right;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  inset: 0;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  padding: 0.5em;
-}
-
-h1 {
-  text-align: center;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  outline: transparent;
-  /* background-color: var(--salmon-pink-clr); */
-  color: var(--accent-variant-clr);
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover,
-button:focus {
-  position: relative;
-  top: -1px;
-  left: -1px;
-  color: var(--accent-variant-clr);
-  box-shadow: var(--todo-card-box-shadow);
 }
 
 #sidebar {
@@ -212,7 +218,10 @@ button.editButton {
   background-position: center;
   background-size: 1rem;
   padding: 1rem;
-  margin: 0.5rem;
+}
+
+.editAndDeleteButtons button + button {
+  margin-left: 0.5rem;
 }
 
 main {
@@ -256,8 +265,7 @@ main {
 }
 
 .todoCard {
-  padding: 1rem;
-  
+  padding: 0.5rem 1rem;
   border-radius: 1rem;
   box-shadow: var(--todo-card-box-shadow);
 }
@@ -265,17 +273,24 @@ main {
 .todoCardHeaderDiv {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .todoCardHeader {
+  padding: 0;
+  flex: 1;
   color: var(--accent-variant-clr);
   font-size: 1.2em;
 }
 
-.todoCardNote {
+.todoCardDescription {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  /* background-color: var(--secondary-bg-clr); */
   color: var(--magenta-clr);
+  display: inline;
 }
 
 .hidden {

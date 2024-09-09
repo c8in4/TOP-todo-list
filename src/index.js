@@ -1,6 +1,12 @@
 import "./style.css"
-import { loadProjects } from "./listOfProjects"
-import { Render } from "./domController"
+import { loadProjects, saveProjects } from "./projectsDatabase"
+import { render } from "./domController"
 
 loadProjects()
-Render()
+
+render()
+
+window.addEventListener("beforeunload", (event) => {
+  event.preventDefault()
+  saveProjects()
+})
