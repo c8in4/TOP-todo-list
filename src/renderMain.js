@@ -67,6 +67,19 @@ function renderTodoCard(todo) {
 
   const priority = document.createElement("p")
   priority.textContent = todo.priority
+  switch (todo.priority) {
+    case "high":
+      todoCardDiv.classList.add("high-priority")
+      break
+    case "normal":
+      todoCardDiv.classList.add("normal-priority")
+      break
+    case "low":
+      todoCardDiv.classList.add("low-priority")
+      break
+    default:
+      break
+  }
 
   const buttons = createEditAndDeleteButtons()
 
