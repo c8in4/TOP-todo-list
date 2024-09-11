@@ -15,32 +15,26 @@ const dialog = document.querySelector("#dialog")
 
 let activeProjectIndex = 0
 
-/* this element does not get re-rendered, it only needs the eventListener
+/* this next 2 elements don't get re-rendered, they only need the eventListener
 setup once
 */
-
 ;(function setupNewProjectEventListener() {
   const newProjectButton = document.querySelector("#createProject")
   newProjectButton.addEventListener("click", () => {
     newProjectEvent()
   })
 })()
+//
+;(function setupProjectListEventListener() {
+  const unorderedListOfProjects = document.querySelector("#listOfProjects")
+  unorderedListOfProjects.addEventListener("click", (e) => {
+    const index = e.target.dataset.index
+    if (index) activeProjectIndex = index
+    render()
+  })
+})()
 
 function setupEventListeners() {
-  ;(function projectList() {
-    const unorderedListOfProjects = document.querySelector("#listOfProjects")
-    unorderedListOfProjects.addEventListener(
-      "click",
-      (e) => {
-        const index = e.target.dataset.index
-        if (index) activeProjectIndex = index
-        render()
-      },
-      // prevents 'componding' of EventListeners on re-renders
-      { once: true },
-    )
-  })()
-  //
   ;(function newTodo() {
     const newTodoButton = document.querySelector("#createTodo")
     if (newTodoButton) {
