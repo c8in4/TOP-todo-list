@@ -6,32 +6,39 @@ import Todo from "./classes/todo"
 import { createProjectDialog, createTodoDialog } from "./modalCreator"
 
 export function render() {
-  if (getListOfProjects()) {
-    renderSidebar(activeProjectIndex)
-    renderMain(getListOfProjects()[activeProjectIndex])
-    setupEventListeners()
-  }
+  renderSidebar(activeProjectIndex)
+  renderMain(getListOfProjects()[activeProjectIndex])
+  setupEventListeners()
 }
 
 const dialog = document.querySelector("#dialog")
 
 let activeProjectIndex = 0
 
+/* this element does not get re-rendered, it only needs the eventListener
+setup once
+*/
+
+;(function setupNewProjectEventListener() {
+  const newProjectButton = document.querySelector("#createProject")
+  newProjectButton.addEventListener("click", () => {
+    newProjectEvent()
+  })
+})()
+
 function setupEventListeners() {
   ;(function projectList() {
     const unorderedListOfProjects = document.querySelector("#listOfProjects")
-    unorderedListOfProjects.addEventListener("click", (e) => {
-      const index = e.target.dataset.index
-      if (index) activeProjectIndex = index
-      render()
-    })
-  })()
-  //
-  ;(function newProject() {
-    const newProjectButton = document.querySelector("#createProject")
-    newProjectButton.addEventListener("click", () => {
-      newProjectEvent()
-    })
+    unorderedListOfProjects.addEventListener(
+      "click",
+      (e) => {
+        const index = e.target.dataset.index
+        if (index) activeProjectIndex = index
+        render()
+      },
+      // prevents 'componding' of EventListeners on re-renders
+      { once: true },
+    )
   })()
   //
   ;(function newTodo() {
