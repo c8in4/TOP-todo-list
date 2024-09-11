@@ -9,7 +9,7 @@ export function getListOfProjects() {
 }
 
 export function saveProjects() {
-  const projectJson = JSON.stringify(getListOfProjects())
+  const projectJson = JSON.stringify(listOfProjects)
   localStorage.setItem("projects", projectJson)
   console.info("Projects saved to local storage")
 }
@@ -37,5 +37,5 @@ function createDefaultProject() {
     "This is just an example of a Todo with a description",
   )
   defaultProject.addTodo(exampleTodo)
-  getListOfProjects().push(defaultProject)
+  listOfProjects.push(defaultProject)
 }
