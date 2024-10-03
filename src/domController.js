@@ -107,6 +107,7 @@ function newProjectEvent() {
     const newProject = new Project(projectName.value)
     if (!newProject.name) return
     getListOfProjects().push(newProject)
+    activeProjectIndex = getListOfProjects().length - 1
     render()
   })
   dialog.showModal()
