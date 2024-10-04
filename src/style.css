@@ -275,7 +275,7 @@ main {
 }
 
 .low-priority {
-  border-left: 0.75rem solid yellow;
+  border-left: 0.75rem solid var(--white-clr);
 }
 
 .normal-priority {
@@ -283,7 +283,7 @@ main {
 }
 
 .high-priority {
-  border-left: 0.75rem solid var(--accent-variant-clr);
+  border-left: 0.75rem solid var(--accent-bg-clr);
 }
 
 .todoCardHeaderDiv {

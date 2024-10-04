@@ -6,7 +6,7 @@ export function createProjectDialog(headerText) {
   resetDialog()
 
   dialogHeader.textContent = headerText
-  const projectNameInput = createTextInput("Project Name:", "projectName")
+  const projectNameInput = createTextInput("Project Name", "projectName")
 
   dialogFormContent.append(projectNameInput)
   createFormButtons()
@@ -16,14 +16,14 @@ export function createTodoDialog(headerText) {
   resetDialog()
 
   dialogHeader.textContent = headerText
-  const todoTitleInput = createTextInput("Todo Title:", "todoTitle")
+  const todoTitleInput = createTextInput("Todo Title", "todoTitle")
 
   const groupDiv = document.createElement("div")
   const todoPriorityInput = createSelectInput("Priority:", "todoPriority")
   const todoDueDate = createDateInput("Due Date:", "todoDueDate")
   groupDiv.append(todoPriorityInput, todoDueDate)
 
-  const todoNoteTextarea = createTextarea("Description:", "todoDescription")
+  const todoNoteTextarea = createTextarea("Description", "todoDescription")
 
   dialogFormContent.append(todoTitleInput, groupDiv, todoNoteTextarea)
   createFormButtons()
@@ -39,10 +39,11 @@ function createTextInput(label, id) {
   const inputLabel = document.createElement("label")
   const labelText = document.createElement("p")
   inputLabel.for = id
-  labelText.textContent = label
+  labelText.textContent = label + ":"
 
   const input = document.createElement("input")
   input.id = id
+  input.placeholder = label
 
   inputLabel.append(labelText, input)
   return inputLabel
@@ -97,12 +98,13 @@ function createTextarea(label, id) {
   const inputLabel = document.createElement("label")
   const labelText = document.createElement("p")
   inputLabel.for = id
-  labelText.textContent = label
+  labelText.textContent = label + ":"
 
   const textarea = document.createElement("textarea")
   textarea.id = id
   textarea.cols = 45
   textarea.rows = 5
+  textarea.placeholder = label
 
   inputLabel.append(labelText, textarea)
   return inputLabel
