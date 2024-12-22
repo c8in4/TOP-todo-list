@@ -210,6 +210,7 @@ button.deleteButton {
   background-position: center;
   background-size: 1rem;
   padding: 1rem;
+  box-shadow: var(--todo-card-box-shadow);
 }
 
 button.editButton {
@@ -218,6 +219,7 @@ button.editButton {
   background-position: center;
   background-size: 1rem;
   padding: 1rem;
+  box-shadow: var(--todo-card-box-shadow);
 }
 
 .editAndDeleteButtons button + button {

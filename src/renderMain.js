@@ -67,12 +67,15 @@ function renderTodoCard(todo) {
 
   const priority = document.createElement("p")
   priority.textContent = todo.priority
+  priority.style.fontWeight = "bold"
   switch (todo.priority) {
     case "high":
       todoCardDiv.classList.add("high-priority")
+      priority.style.color = "var(--accent-bg-clr)"
       break
     case "normal":
       todoCardDiv.classList.add("normal-priority")
+      priority.style.color = "var(--salmon-pink-clr)"
       break
     case "low":
       todoCardDiv.classList.add("low-priority")
