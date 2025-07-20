@@ -7,6 +7,7 @@ export default class Todo {
     // note,
     // checklist
   ) {
+    this.id = crypto.randomUUID()
     this.title = title
     this.priority = priority
     this.dueDate = dueDate
