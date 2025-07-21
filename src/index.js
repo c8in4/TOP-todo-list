@@ -1,11 +1,19 @@
 import "./style.css"
+
 import testProjectCreator from "./testProjectCreator";
+import database, { createDefaultProject } from "./database";
+
 
 const testProject1 = testProjectCreator('Project 1')
 const testProject2 = testProjectCreator('Project 2')
+const defaultProject = createDefaultProject()
 
-console.table(testProject1.todoList);
-console.table(testProject2.todoList);
+database.addProject(testProject1);
+database.addProject(testProject2);
+database.addProject(defaultProject);
+console.log(database);
+
+
 
 // import { loadProjects, saveProjects } from "./projectsDatabase"
 // import { render } from "./domController"

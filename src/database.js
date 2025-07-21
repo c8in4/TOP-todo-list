@@ -2,11 +2,22 @@ import { format } from "date-fns"
 import Project from "./classes/project"
 import Todo from "./classes/todo"
 
-let listOfProjects = []
+class ListOfProjects {
+  constructor() {
+    this.projects = []
+  }
 
-export function getListOfProjects() {
-  return listOfProjects
+  addProject(project) {
+    this.projects.push(project)
+  }
+
+  removeProject() {
+    // this.projects
+    // get index by id and then remove by index
+  }
 }
+
+export default new ListOfProjects
 
 export function saveProjects() {
   const projectJson = JSON.stringify(listOfProjects)
@@ -21,14 +32,14 @@ export function loadProjects() {
     listOfProjects = parsedProjects
     console.info("Loaded projects from local storage")
   } else {
-    createDefaultProject()
+    listOfProjects.push(createDefaultProject())
     console.info(
       "No local projects found. Created default project with example todo",
     )
   }
 }
 
-function createDefaultProject() {
+export function createDefaultProject() {
   const defaultProject = new Project("Default Project")
   const exampleTodo = new Todo(
     "Example Todo",
@@ -37,5 +48,5 @@ function createDefaultProject() {
     "This is just an example of a Todo with a description",
   )
   defaultProject.addTodo(exampleTodo)
-  listOfProjects.push(defaultProject)
+  return defaultProject
 }
