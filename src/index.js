@@ -1,12 +1,20 @@
 import "./style.css"
-import { loadProjects, saveProjects } from "./projectsDatabase"
-import { render } from "./domController"
+import testProjectCreator from "./testProjectCreator";
 
-loadProjects()
+const testProject1 = testProjectCreator('Project 1')
+const testProject2 = testProjectCreator('Project 2')
 
-render()
+console.table(testProject1.todoList);
+console.table(testProject2.todoList);
 
-window.addEventListener("beforeunload", (event) => {
-  event.preventDefault()
-  saveProjects()
-})
+// import { loadProjects, saveProjects } from "./projectsDatabase"
+// import { render } from "./domController"
+
+// loadProjects()
+
+// render()
+
+// window.addEventListener("beforeunload", (event) => {
+//   event.preventDefault()
+//   saveProjects()
+// })
