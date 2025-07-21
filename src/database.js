@@ -1,6 +1,7 @@
 import { format } from "date-fns"
 import Project from "./classes/project"
 import Todo from "./classes/todo"
+import testProjectCreator from "./testProjectCreator"
 
 class ListOfProjects {
   constructor() {
@@ -11,16 +12,18 @@ class ListOfProjects {
     this.projects.push(project)
   }
 
-  removeProject() {
-    // this.projects
-    // get index by id and then remove by index
+  removeProject(projectId) {
+    const indexOfProjectToDelete = this.projects.findIndex(project => {
+      return project.id == projectId
+    })
+    this.projects.splice(indexOfProjectToDelete, 1)
   }
 }
 
-export default new ListOfProjects
+export let database = new ListOfProjects
 
 export function saveProjects() {
-  const projectJson = JSON.stringify(listOfProjects)
+  const projectJson = JSON.stringify(database)
   localStorage.setItem("projects", projectJson)
   console.info("Projects saved to local storage")
 }
@@ -29,11 +32,14 @@ export function loadProjects() {
   const projects = localStorage.getItem("projects")
   const parsedProjects = JSON.parse(projects)
   if (projects) {
-    listOfProjects = parsedProjects
+    database = parsedProjects
     console.info("Loaded projects from local storage")
   } else {
-    listOfProjects.push(createDefaultProject())
+    database.addProject(createDefaultProject())
+    // database.addProject(testProjectCreator('Project 1'))
+    // database.addProject(testProjectCreator('Project 2'))
     console.info(
+
       "No local projects found. Created default project with example todo",
     )
   }
