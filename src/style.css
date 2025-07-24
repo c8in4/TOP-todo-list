@@ -108,3 +108,29 @@ body.dark {
 }
 
 /* END of resets and theming */
+
+body {
+  height: 100dvh;
+  width: 100dvw;
+  display: flex;
+  flex-direction: column;
+
+  header {
+    outline: 1px solid red;
+
+  }
+
+  main {
+    flex: 1;
+
+    display: flex;
+    gap: 1rem;
+    outline: 1px solid red;
+
+  }
+
+  footer {
+    align-self: center;
+    outline: 1px solid red;
+  }
+}
