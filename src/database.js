@@ -1,10 +1,10 @@
 import ListOfProjects from "./classes/listOfProjects"
+import Project from "./classes/project";
+import Todo from "./classes/todo";
+import { format } from "date-fns"
 import { getData } from "./localStorageIO"
-import createDefaultProject from "./createDefaultProject"
 
-export let database = initDatabase()
-
-function initDatabase() {
+export default (() => {
   const newDatabase = new ListOfProjects
   if (getData('projects')) {
     getProjectsFromLocalStorage(newDatabase)
@@ -12,7 +12,7 @@ function initDatabase() {
     newDatabase.addProject(createDefaultProject())
   }
   return newDatabase
-}
+})();
 
 function getProjectsFromLocalStorage(database) {
   if (getData('projects')) {
@@ -21,4 +21,16 @@ function getProjectsFromLocalStorage(database) {
       database.addProject(project)
     });
   }
+}
+
+function createDefaultProject() {
+  const defaultProject = new Project("Default Project")
+  const exampleTodo = new Todo(
+    "Example Todo",
+    "normal",
+    format(new Date(), "yyyy-MM-dd"),
+    "This is just an example of a Todo with a description",
+  )
+  defaultProject.addTodo(exampleTodo)
+  return defaultProject
 }
