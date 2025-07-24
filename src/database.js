@@ -4,7 +4,7 @@ import Todo from "./classes/todo";
 import { format } from "date-fns"
 import { getData } from "./localStorageIO"
 
-export default (() => {
+export default function () {
   const newDatabase = new ListOfProjects
   if (getData('projects')) {
     getProjectsFromLocalStorage(newDatabase)
@@ -12,7 +12,7 @@ export default (() => {
     newDatabase.addProject(createDefaultProject())
   }
   return newDatabase
-})();
+}
 
 function getProjectsFromLocalStorage(database) {
   if (getData('projects')) {
