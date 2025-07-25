@@ -106,7 +106,23 @@ body.dark {
   --clr-success: oklch(0.7 0.1 160);
   --clr-info: oklch(0.7 0.1 260);
 
-  --box-shadow: 0.1rem 0.1rem 0.5rem var(--clr-text-muted);
+  --box-shadow: 0.5rem 0.5rem 1rem var(--clr-border-muted);
+}
+
+.theme-button {
+  background-color: var(--clr-bg-dark);
+  position: fixed;
+  right: 0.5rem;
+  top: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  border: 0.1rem solid var(--clr-border);
+  border-radius: 0.5rem;
+}
+
+.theme-button:hover {
+  background-color: var(--clr-bg-light);
+  border-color: var(--clr-highlight);
+  cursor: pointer;
 }
 
 /* END of resets and theming */
@@ -145,8 +161,10 @@ body {
     position: relative;
 
     background-color: var(--clr-bg-light);
-    border: var(--clr-border) 0.1rem solid;
     border-radius: 0.5rem;
+    border: var(--clr-border) 0.1rem solid;
+    border-top: var(--clr-highlight);
+    box-shadow: var(--box-shadow);
 
     h2 {
       /* text-align: center; */
@@ -155,7 +173,6 @@ body {
       top: 0;
       margin: 0 -1rem;
       padding: 0.5rem 1rem;
-      outline: 1px solid red;
     }
 
     p {
