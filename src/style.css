@@ -77,8 +77,9 @@ h6 {
   --clr-highlight: oklch(1 0 110);
   --clr-border: oklch(0.6 0 110);
   --clr-border-muted: oklch(0.7 0 110);
-  --clr-primary: oklch(0.76 0.1 110);
-  --clr-secondary: oklch(0.76 0.1 290);
+  --clr-primary: oklch(0.76 0.1 240);
+  --clr-secondary: oklch(0.76 0.1 0);
+  --clr-tertiary: oklch(0.76 0.1 120);
   --clr-danger: oklch(0.5 0.1 30);
   --clr-warning: oklch(0.5 0.1 100);
   --clr-success: oklch(0.5 0.1 160);
@@ -97,8 +98,9 @@ body.dark {
   --clr-highlight: oklch(0.5 0 110);
   --clr-border: oklch(0.4 0 110);
   --clr-border-muted: oklch(0.3 0 110);
-  --clr-primary: oklch(0.4 0.1 110);
-  --clr-secondary: oklch(0.4 0.1 290);
+  --clr-primary: oklch(0.4 0.1 240);
+  --clr-secondary: oklch(0.4 0.1 0);
+  --clr-tertiary: oklch(0.4 0.1 120);
   --clr-danger: oklch(0.7 0.1 30);
   --clr-warning: oklch(0.7 0.1 100);
   --clr-success: oklch(0.7 0.1 160);
@@ -110,27 +112,61 @@ body.dark {
 /* END of resets and theming */
 
 body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--clr-text);
+
   height: 100dvh;
   width: 100dvw;
   display: flex;
   flex-direction: column;
 
   header {
-    outline: 1px solid red;
-
+    background-color: var(--clr-primary);
+    padding: 0.5rem 1rem;
   }
 
   main {
+    padding: 1rem;
+    background-color: var(--clr-bg-dark);
+
     flex: 1;
-
+    overflow-x: scroll;
     display: flex;
-    gap: 1rem;
-    outline: 1px solid red;
+    gap: 0.5rem;
+  }
 
+  main>* {
+    padding: 0.5rem 1rem;
+    padding-top: 0;
+    overflow-y: scroll;
+    flex: 1 0 25ch;
+    max-width: 35ch;
+    /* height: fit-content; */
+    position: relative;
+
+    background-color: var(--clr-bg-light);
+    border: var(--clr-border) 0.1rem solid;
+    border-radius: 0.5rem;
+
+    h2 {
+      /* text-align: center; */
+      background-color: var(--clr-secondary);
+      position: sticky;
+      top: 0;
+      margin: 0 -1rem;
+      padding: 0.5rem 1rem;
+      outline: 1px solid red;
+    }
+
+    p {
+      color: var(--clr-text-muted);
+    }
   }
 
   footer {
-    align-self: center;
-    outline: 1px solid red;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: var(--clr-primary);
   }
 }
