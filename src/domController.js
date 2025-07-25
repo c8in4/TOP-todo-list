@@ -4,6 +4,8 @@
 // import Todo from "./classes/todo"
 // import { createProjectDialog, createTodoDialog } from "./modalCreator"
 
+// import EditButton form './icons/edit-icon.png';
+
 export function renderProjects(projects) {
   const mainContainer = document.querySelector('main')
   projects.forEach(project => {
@@ -13,15 +15,24 @@ export function renderProjects(projects) {
 
 function createProjectContainer(project) {
   const container = document.createElement('div')
+  container.classList.add('projectCard')
+  container.dataset.id = project.id
+
+  const headerAndButtons = document.createElement('div')
+  headerAndButtons.classList.add('projectHeader')
   const header = document.createElement('h2')
   header.innerText = project.name
+
+  headerAndButtons.append(header, createEditAndDeleteButtons())
+
   const todos = createTodoContainer(project.todoList)
-  container.append(header, todos)
+  container.append(headerAndButtons, todos)
   return container
 }
 
 function createTodoContainer(todoList) {
   const todosContainer = document.createElement('div')
+  todosContainer.classList.add('todoList')
   todoList.forEach(todo => {
     todosContainer.appendChild(createTodo(todo))
   });
@@ -30,6 +41,8 @@ function createTodoContainer(todoList) {
 
 function createTodo(todo) {
   const todoContainer = document.createElement('div')
+  todoContainer.classList.add('todoItem')
+  todoContainer.dataset.id = todo.id
   const title = document.createElement('h3')
   title.innerText = todo.title
   const description = document.createElement('p')
@@ -41,6 +54,20 @@ function createTodo(todo) {
 
   todoContainer.append(title, dueDate, priority, description)
   return todoContainer
+}
+
+function createEditAndDeleteButtons() {
+  const container = document.createElement("div")
+  // container.classList.add("editAndDeleteButtons")
+
+  const editButton = document.createElement("button")
+  editButton.classList.add("editButton")
+
+  const deleteButton = document.createElement("button")
+  deleteButton.classList.add("deleteButton")
+
+  container.append(editButton, deleteButton)
+  return container
 }
 
 // export function render() {
