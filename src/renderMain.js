@@ -1,12 +1,5 @@
-// import renderSidebar from "./renderSidebar"
-// import renderMain from "./renderMain"
-// import Project from "./classes/project"
-// import Todo from "./classes/todo"
-// import { createProjectDialog, createTodoDialog } from "./modalCreator"
-
 import EditIcon from './icons/edit-icon.png'
 import DeleteIcon from './icons/delete-icon.png'
-
 
 export function renderProjects(projects) {
   const mainContainer = document.querySelector('main')
@@ -47,6 +40,9 @@ function createTodo(todo) {
   todoContainer.classList.add('todoItem')
   todoContainer.dataset.id = todo.id
   const title = document.createElement('h3')
+  if (todo.checked) {
+    title.classList.add('lineThrough')
+  }
   title.innerText = todo.title
   const description = document.createElement('p')
   description.innerText = todo.description
