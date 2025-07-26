@@ -5,11 +5,26 @@ import Project from "./classes/project";
 export default (projectName) => {
     const project = new Project(projectName)
 
-    const testTodo1 = new Todo('todo 1', 'normal', format(new Date(), "yyyy-MM-dd"), '')
+    const testTodo1 = new Todo({
+        title: 'todo 1',
+        priority: 'normal',
+        dueDate: format(new Date(), "yyyy-MM-dd"),
+        description: ''
+    })
     project.addTodo(testTodo1)
-    const testTodo2 = new Todo('todo 2', 'normal', format(new Date(), "yyyy-MM-dd"), '')
+    const testTodo2 = new Todo({
+        title: 'todo 2',
+        priority: 'normal',
+        dueDate: format(new Date(), "yyyy-MM-dd"),
+        description: ''
+    })
     project.addTodo(testTodo2)
-    const testTodo3 = new Todo('todo 3', 'normal', format(new Date(), "yyyy-MM-dd"), '')
+    const testTodo3 = new Todo({
+        title: 'todo 3',
+        priority: 'normal',
+        dueDate: format(new Date(), "yyyy-MM-dd"),
+        description: ''
+    })
     project.addTodo(testTodo3)
 
     return project

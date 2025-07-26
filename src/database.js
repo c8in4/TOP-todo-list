@@ -17,9 +17,9 @@ export default function () {
 function getProjectsFromLocalStorage(database) {
   const savedProjects = getData('projects')
   savedProjects.projects.forEach(project => {
-    const newProject = new Project(project.name, project.id)
+    const newProject = new Project(project)
     project.todoList.forEach(todo => {
-      newProject.addTodo(new Todo(todo.title, todo.dueDate, todo.priority, todo.description, todo.id))
+      newProject.addTodo(new Todo(todo))
     });
     database.addProject(newProject)
   });
@@ -28,10 +28,12 @@ function getProjectsFromLocalStorage(database) {
 function createDefaultProject() {
   const defaultProject = new Project("Default Project")
   const exampleTodo = new Todo(
-    "Example Todo",
-    "normal",
-    format(new Date(), "yyyy-MM-dd"),
-    "This is just an example of a Todo with a description",
+    {
+      title: "Example Todo",
+      priority: "normal",
+      dueDate: format(new Date(), "yyyy-MM-dd"),
+      description: "This is just an example of a Todo with a description",
+    }
   )
   defaultProject.addTodo(exampleTodo)
   return defaultProject
