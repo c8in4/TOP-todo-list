@@ -5,6 +5,7 @@ export default class Todo {
       priority,
       dueDate,
       description,
+      checked
       // note,
       // checklist
     }
@@ -14,7 +15,12 @@ export default class Todo {
     this.priority = priority
     this.dueDate = dueDate
     this.description = description || "no description"
+    this.checked = checked || false
     // this.note = note
     // this.checklist = checklist
+  }
+
+  changeCheckedState() {
+    this.checked = !this.checked
   }
 }
