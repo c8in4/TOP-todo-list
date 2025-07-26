@@ -26,7 +26,7 @@ function getProjectsFromLocalStorage(database) {
 }
 
 function createDefaultProject() {
-  const defaultProject = new Project("Default Project")
+  const defaultProject = new Project({ name: "Default Project" })
   const exampleTodo = new Todo(
     {
       title: "Example Todo",
