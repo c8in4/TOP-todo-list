@@ -15,12 +15,14 @@ export default function () {
 }
 
 function getProjectsFromLocalStorage(database) {
-  if (getData('projects')) {
-    const savedProjects = JSON.parse(localStorage.getItem('projects'))
-    savedProjects.projects.forEach(project => {
-      database.addProject(project)
+  const savedProjects = getData('projects')
+  savedProjects.projects.forEach(project => {
+    const newProject = new Project(project.name, project.id)
+    project.todoList.forEach(todo => {
+      newProject.addTodo(new Todo(todo.title, todo.dueDate, todo.priority, todo.description, todo.id))
     });
-  }
+    database.addProject(newProject)
+  });
 }
 
 function createDefaultProject() {

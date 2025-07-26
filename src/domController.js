@@ -8,6 +8,7 @@
 
 export function renderProjects(projects) {
   const mainContainer = document.querySelector('main')
+  mainContainer.innerText = ''
   projects.forEach(project => {
     mainContainer.appendChild(createProjectContainer(project))
   });
