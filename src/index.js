@@ -1,4 +1,4 @@
 import "./style.css"
-import { renderProjects } from "./renderMain";
+import render from "./render";
 
-renderProjects()
+render()

@@ -77,9 +77,14 @@ h6 {
   --clr-highlight: oklch(1 0 110);
   --clr-border: oklch(0.6 0 110);
   --clr-border-muted: oklch(0.7 0 110);
-  --clr-primary: oklch(0.76 0.1 240);
-  --clr-secondary: oklch(0.76 0.1 0);
-  --clr-tertiary: oklch(0.76 0.1 120);
+
+  --clr-primary:
+    oklch(0.76 0.1 240);
+  --clr-secondary:
+    oklch(0.76 0.1 300);
+  --clr-tertiary:
+    oklch(0.76 0.1 270);
+
   --clr-danger: oklch(0.5 0.1 30);
   --clr-warning: oklch(0.5 0.1 100);
   --clr-success: oklch(0.5 0.1 160);
@@ -98,15 +103,20 @@ body.dark {
   --clr-highlight: oklch(0.5 0 110);
   --clr-border: oklch(0.4 0 110);
   --clr-border-muted: oklch(0.3 0 110);
-  --clr-primary: oklch(0.4 0.1 240);
-  --clr-secondary: oklch(0.4 0.1 0);
-  --clr-tertiary: oklch(0.4 0.1 120);
+
+  --clr-primary:
+    oklch(0.4 0.1 240);
+  --clr-secondary:
+    oklch(0.4 0.1 300);
+  --clr-tertiary:
+    oklch(0.4 0.1 270);
+
   --clr-danger: oklch(0.7 0.1 30);
   --clr-warning: oklch(0.7 0.1 100);
   --clr-success: oklch(0.7 0.1 160);
   --clr-info: oklch(0.7 0.1 260);
 
-  --box-shadow: 0.5rem 0.5rem 1rem var(--clr-border-muted);
+  --box-shadow: 0.5rem 0.5rem 1.5rem var(--clr-border-muted);
 }
 
 .theme-button {
@@ -149,6 +159,23 @@ body {
   header {
     background-color: var(--clr-primary);
     padding: 0.5rem 1rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    button.newProject {
+      /* outline: 1px solid red; */
+
+      background-color: var(--clr-secondary);
+      color: var(--clr-text);
+
+      font-weight: 900;
+
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+    }
   }
 
   main {
@@ -190,10 +217,6 @@ body {
 
       margin: 1rem 1rem 0 1rem;
     }
-
-    /* button.newTodo:hover {
-      height: 2.5rem;
-    } */
 
     .projectHeader {
       background-color: var(--clr-secondary);
@@ -238,7 +261,6 @@ body {
 }
 
 .editAndDeleteButtons {
-  /* outline: 1px solid red; */
   display: flex;
   gap: 0.5rem;
 
