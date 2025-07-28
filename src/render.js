@@ -3,9 +3,8 @@ import DeleteIcon from './icons/delete-icon.png'
 import database from './database'
 import { saveData } from './localStorageIO'
 import eventListeners from './eventListeners'
-// import setupEventListeners from './eventListeners'
 
-export function renderProjects() {
+export default () => {
   const mainContainer = document.querySelector('main')
   mainContainer.innerText = ''
   database.projects.forEach(project => {
@@ -109,6 +108,6 @@ function createEditAndDeleteButtons() {
 }
 
 function setupEventListeners() {
-  const main = document.querySelector('main')
-  main.addEventListener('click', eventListeners)
+  const body = document.querySelector('body')
+  body.addEventListener('click', eventListeners)
 }
