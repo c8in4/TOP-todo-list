@@ -4,7 +4,9 @@ import Todo from "./classes/todo";
 import { format } from "date-fns"
 import { getData } from "./localStorageIO"
 
-export default function () {
+export default initDatabase()
+
+function initDatabase() {
   const newDatabase = new ListOfProjects
   if (getData('projects')) {
     getProjectsFromLocalStorage(newDatabase)
