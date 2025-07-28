@@ -1,22 +1,71 @@
 import database from "./database"
+import render from './render'
+
+import createTestProject from "./createTestProject";
+import Todo from "./classes/todo";
+
 
 export default (event) => {
-    // if (event.target.classList.contains('newTodo')) {
-    // function to add a new todo
     const elementWithId = event.target.closest('[data-id]')
-    // const projectIndex = getIndexById(projectId)
+    const elementClasses = event.target.classList
 
-    // database.projects[projectIndex].addTodo(testTodo)
-    // renderProjects(database.projects)
-    console.log(getIndexById(elementWithId.dataset.id));
+    if (elementClasses.contains('newProject')) {
+        console.log('new Project button pressed');
 
-    console.log();
-    // }
-    // renderProjects(database.projects)
-    // saveData('projects', database)
+        // 
+        const testProject = createTestProject({ name: 'new test project' })
+        database.addProject(testProject)
+        //
+    }
+
+    if (elementWithId) {
+        const idsAndIndexes = getIdsAndIndexes(elementWithId)
+        console.log(idsAndIndexes);
+        if (elementClasses.contains('newTodo')) {
+            console.log('new Todo button pressed');
+
+            // for testing
+            const testTodo = new Todo({ title: 'new test todo' })
+            database.projects[idsAndIndexes.projectIndex].addTodo(testTodo)
+            //
+        }
+        if (elementClasses.contains('deleteImg')) {
+            console.log('delete button');
+            if (!idsAndIndexes.todoId) {
+                database.removeProject(idsAndIndexes.projectIndex)
+            } else {
+                database.projects[idsAndIndexes.projectIndex].removeTodo(idsAndIndexes.todoIndex)
+            }
+        }
+        if (elementClasses.contains('editImg')) {
+            console.log('edit button');
+        }
+    }
+
+    render()
 }
 
-function getIndexById(id) {
-    const index = database.projects.findIndex(project => project.id === id)
-    return index
+function getIdsAndIndexes(element) {
+    const parentElement = element.parentNode.closest('[data-id]')
+    let projectId, projectIndex, todoId, todoIndex
+    if (!parentElement) {
+        projectId = element.dataset.id
+    } else {
+        todoId = element.dataset.id
+        projectId = parentElement.dataset.id
+    }
+    projectIndex = getProjectIndexById(projectId)
+    todoIndex = getTodoIndexById(projectIndex, todoId)
+
+    return { projectId, projectIndex, todoId, todoIndex }
+
+    function getTodoIndexById(projectIndex, todoId) {
+        const index = database.projects[projectIndex].todoList.findIndex(todo => todo.id === todoId)
+        return index
+    }
+
+    function getProjectIndexById(id) {
+        const index = database.projects.findIndex(project => project.id === id)
+        return index
+    }
 }
