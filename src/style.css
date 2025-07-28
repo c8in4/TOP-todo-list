@@ -136,25 +136,9 @@ body.dark {
 }
 
 body {
-
-  .editAndDeleteButtons {
-    /* outline: 1px solid red; */
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-
-    button {
-      height: 2rem;
-      aspect-ratio: 1;
-      border-radius: 0.5rem;
-      border: none;
-      background-color: var(--clr-bg-dark);
-    }
-  }
-
   font-family: Arial,
-  Helvetica,
-  sans-serif;
+    Helvetica,
+    sans-serif;
   color: var(--clr-text);
 
   height: 100dvh;
@@ -183,39 +167,60 @@ body {
     max-width: 35ch;
     position: relative;
 
+    display: flex;
+    flex-direction: column;
+
     background-color: var(--clr-bg-dark);
     border-radius: 0.5rem;
     border: var(--clr-border) 0.1rem solid;
     border-top: var(--clr-highlight);
     box-shadow: var(--box-shadow);
 
+    button.newTodo {
+      background-color: var(--clr-tertiary);
+      color: var(--clr-text);
+
+      height: 2rem;
+      aspect-ratio: 1;
+
+      font-weight: 900;
+
+      border-radius: 0.5rem;
+      border: none;
+
+      margin: 1rem 1rem 0 1rem;
+    }
+
+    /* button.newTodo:hover {
+      height: 2.5rem;
+    } */
+
     .projectHeader {
       background-color: var(--clr-secondary);
       position: sticky;
       top: 0;
       padding: 0.5rem;
-
-      display: flex;
-      justify-content: space-between;
-
-      h2 {
-        /* text-align: center; */
-      }
+      z-index: 1;
     }
-
 
     .todoList {
       margin: 1rem 0.5rem;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      /* outline: 1px solid red; */
 
       .todoItem {
         background-color: var(--clr-bg-light);
         padding: 0.5rem;
         border-radius: 0.5rem;
         border-left: 0.5rem solid var(--clr-info);
+        position: relative;
+
+        .editAndDeleteButtons {
+          button {
+            height: 1.5rem;
+          }
+        }
       }
     }
 
@@ -230,4 +235,35 @@ body {
     padding: 0.5rem;
     background-color: var(--clr-primary);
   }
+}
+
+.editAndDeleteButtons {
+  /* outline: 1px solid red; */
+  display: flex;
+  gap: 0.5rem;
+
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  button {
+    height: 1.8rem;
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: var(--clr-bg-dark);
+  }
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.lineThrough {
+  text-decoration: line-through;
+  color: var(--clr-text-muted);
+}
+
+.hidden {
+  display: none;
 }

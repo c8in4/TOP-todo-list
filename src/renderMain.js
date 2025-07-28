@@ -1,32 +1,48 @@
 import EditIcon from './icons/edit-icon.png'
 import DeleteIcon from './icons/delete-icon.png'
+import database from './database'
+import { saveData } from './localStorageIO'
+import eventListeners from './eventListeners'
+// import setupEventListeners from './eventListeners'
 
-export function renderProjects(projects) {
+export function renderProjects() {
   const mainContainer = document.querySelector('main')
   mainContainer.innerText = ''
-  projects.forEach(project => {
-    mainContainer.appendChild(createProjectContainer(project))
+  database.projects.forEach(project => {
+    mainContainer.appendChild(createProjectCard(project))
   });
+  saveData('projects', database)
+  setupEventListeners()
 }
 
-function createProjectContainer(project) {
+function createProjectCard(project) {
   const container = document.createElement('div')
   container.classList.add('projectCard')
   container.dataset.id = project.id
 
-  const headerAndButtons = document.createElement('div')
-  headerAndButtons.classList.add('projectHeader')
+  const headerContainer = document.createElement('div')
+  headerContainer.classList.add('projectHeader')
+
   const header = document.createElement('h2')
   header.innerText = project.name
 
-  headerAndButtons.append(header, createEditAndDeleteButtons())
+  headerContainer.append(header, createEditAndDeleteButtons(project.id))
 
-  const todos = createTodoContainer(project.todoList)
-  container.append(headerAndButtons, todos)
+  const todos = createTodoList(project.todoList)
+
+  const todoButton = document.createElement('button')
+  todoButton.classList.add('newTodo')
+  todoButton.innerText = 'Add new Todo'
+
+  container.append(
+    headerContainer,
+    todoButton,
+    todos,
+  )
   return container
 }
 
-function createTodoContainer(todoList) {
+function createTodoList(todoList) {
   const todosContainer = document.createElement('div')
   todosContainer.classList.add('todoList')
   todoList.forEach(todo => {
@@ -37,21 +53,38 @@ function createTodoContainer(todoList) {
 
 function createTodo(todo) {
   const todoContainer = document.createElement('div')
-  todoContainer.classList.add('todoItem')
   todoContainer.dataset.id = todo.id
+  todoContainer.classList.add('todoItem')
+
+  // const checkbox = document.createElement('input')
+  // checkbox.type = 'checkbox'
+
   const title = document.createElement('h3')
+  title.innerText = todo.title
+
   if (todo.checked) {
+    // checkbox.checked = true
     title.classList.add('lineThrough')
   }
-  title.innerText = todo.title
-  const description = document.createElement('p')
-  description.innerText = todo.description
+
   const dueDate = document.createElement('p')
   dueDate.innerText = 'due: ' + todo.dueDate
+
   const priority = document.createElement('p')
   priority.innerText = 'priority: ' + todo.priority
 
-  todoContainer.append(title, dueDate, priority, description)
+  const description = document.createElement('p')
+  description.innerText = todo.description
+  description.classList.add('hidden')
+
+  todoContainer.append(
+    // checkbox,
+    title,
+    createEditAndDeleteButtons(todo.id),
+    dueDate,
+    priority,
+    description
+  )
   return todoContainer
 }
 
@@ -73,4 +106,9 @@ function createEditAndDeleteButtons() {
 
   container.append(editButton, deleteButton)
   return container
+}
+
+function setupEventListeners() {
+  const main = document.querySelector('main')
+  main.addEventListener('click', eventListeners)
 }
