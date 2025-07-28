@@ -9,18 +9,7 @@ export default class Project {
     this.todoList.push(newTodo)
   }
 
-  // removeTodo(todoIndex) {
-  //   if (todoIndex < this.todoList.length) {
-  //     this.todoList.splice(todoIndex, 1)
-  //   } else {
-  //     console.log("invalid index")
-  //   }
-  // }
-
-  removeTodo(todoId) {
-    const indexOfTodoToDelete = this.todoList.findIndex(todo => {
-      return todo.id == todoId
-    })
-    this.todoList.splice(indexOfTodoToDelete, 1)
+  removeTodo(todoIndex) {
+    this.todoList.splice(todoIndex, 1)
   }
 }

@@ -7,10 +7,7 @@ export default class ListOfProjects {
         this.projects.push(project)
     }
 
-    removeProject(projectId) {
-        const indexOfProjectToDelete = this.projects.findIndex(project => {
-            return project.id == projectId
-        })
-        this.projects.splice(indexOfProjectToDelete, 1)
+    removeProject(projectIndex) {
+        this.projects.splice(projectIndex, 1)
     }
 }
