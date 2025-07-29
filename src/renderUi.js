@@ -61,6 +61,9 @@ function createTodo(todo) {
   // const checkbox = document.createElement('input')
   // checkbox.type = 'checkbox'
 
+  const todoHeader = document.createElement("div");
+  todoHeader.classList.add("todoHeader");
+
   const title = document.createElement("h3");
   title.innerText = todo.title;
 
@@ -68,6 +71,8 @@ function createTodo(todo) {
     // checkbox.checked = true
     title.classList.add("lineThrough");
   }
+
+  todoHeader.append(title, createEditAndDeleteButtons());
 
   const dueDate = document.createElement("p");
   dueDate.innerText = "due: " + todo.dueDate;
@@ -80,9 +85,9 @@ function createTodo(todo) {
   description.classList.add("hidden");
 
   todoContainer.append(
+    todoHeader,
     // checkbox,
-    title,
-    createEditAndDeleteButtons(todo.id),
+
     dueDate,
     description,
   );
