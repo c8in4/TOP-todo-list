@@ -7,7 +7,7 @@ export default (projectName) => {
 
   const testTodo1 = new Todo({
     title: "todo 1",
-    priority: "normal",
+    priority: "low",
     dueDate: format(new Date(), "yyyy-MM-dd"),
     description: "",
   });
@@ -21,7 +21,7 @@ export default (projectName) => {
   project.addTodo(testTodo2);
   const testTodo3 = new Todo({
     title: "todo 3",
-    priority: "normal",
+    priority: "high",
     dueDate: format(new Date(), "yyyy-MM-dd"),
     description: "",
   });

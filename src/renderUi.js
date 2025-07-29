@@ -4,6 +4,12 @@ import database from "./database";
 import { saveData } from "./localStorageIO";
 import eventListeners from "./eventListeners";
 
+const PRIORITY_COLORS = {
+  low: "var(--clr-info)",
+  normal: "var(--clr-warning)",
+  high: "var(--clr-danger)",
+};
+
 export default () => {
   const mainContainer = document.querySelector("main");
   mainContainer.innerText = "";
@@ -50,6 +56,7 @@ function createTodo(todo) {
   const todoContainer = document.createElement("div");
   todoContainer.dataset.id = todo.id;
   todoContainer.classList.add("todoItem");
+  todoContainer.style.borderLeftColor = PRIORITY_COLORS[todo.priority];
 
   // const checkbox = document.createElement('input')
   // checkbox.type = 'checkbox'
@@ -65,8 +72,8 @@ function createTodo(todo) {
   const dueDate = document.createElement("p");
   dueDate.innerText = "due: " + todo.dueDate;
 
-  const priority = document.createElement("p");
-  priority.innerText = "priority: " + todo.priority;
+  // const priority = document.createElement("p");
+  // priority.innerText = "priority: " + todo.priority;
 
   const description = document.createElement("p");
   description.innerText = todo.description;
@@ -77,7 +84,6 @@ function createTodo(todo) {
     title,
     createEditAndDeleteButtons(todo.id),
     dueDate,
-    priority,
     description,
   );
   return todoContainer;

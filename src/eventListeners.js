@@ -11,7 +11,7 @@ export default (event) => {
   if (elementClasses.contains("newProject")) {
     console.log("new Project button pressed");
 
-    //
+    // should render 'project' modal
     const testProject = createTestProject({ name: "new test project" });
     database.addProject(testProject);
     //
@@ -23,7 +23,7 @@ export default (event) => {
     if (elementClasses.contains("newTodo")) {
       console.log("new Todo button pressed");
 
-      // for testing
+      // should render 'todo' modal
       const testTodo = new Todo({ title: "new test todo" });
       database.projects[idsAndIndexes.projectIndex].addTodo(testTodo);
       //
@@ -40,6 +40,8 @@ export default (event) => {
     }
     if (elementClasses.contains("editImg")) {
       console.log("edit button");
+      // should render 'todo' or 'project' modal
+      //
     }
   }
 
