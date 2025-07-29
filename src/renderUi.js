@@ -82,7 +82,7 @@ function createTodo(todo) {
 
   const description = document.createElement("p");
   description.innerText = todo.description;
-  description.classList.add("hidden");
+  description.classList.add("hidden", "description");
 
   todoContainer.append(
     todoHeader,
