@@ -1,4 +1,4 @@
-import "./style.css"
-import render from "./render";
+import "./style.css";
+import render from "./renderUi";
 
-render()
+render();

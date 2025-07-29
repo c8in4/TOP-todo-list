@@ -1,13 +1,13 @@
 export default class ListOfProjects {
-    constructor() {
-        this.projects = []
-    }
+  constructor() {
+    this.projects = [];
+  }
 
-    addProject(project) {
-        this.projects.push(project)
-    }
+  addProject(project) {
+    this.projects.push(project);
+  }
 
-    removeProject(projectIndex) {
-        this.projects.splice(projectIndex, 1)
-    }
+  removeProject(projectIndex) {
+    this.projects.splice(projectIndex, 1);
+  }
 }
