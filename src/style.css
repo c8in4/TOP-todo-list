@@ -132,7 +132,6 @@ body.dark {
 /* END of resets and theming */
 
 body.dark {
-
   .editImg,
   .deleteImg {
     filter: invert(0.96);
@@ -247,7 +246,6 @@ body {
         }
       }
     }
-
   }
 
   footer {

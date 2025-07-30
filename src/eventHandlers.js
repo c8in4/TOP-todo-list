@@ -1,7 +1,6 @@
 import database from "./database";
 import render from "./renderUi";
 
-import createTestProject from "./createTestProject";
 import Todo from "./classes/todo";
 import { createProjectDialog, createTodoDialog } from "./createModal";
 import Project from "./classes/project";
