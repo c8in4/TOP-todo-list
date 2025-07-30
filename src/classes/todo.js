@@ -5,7 +5,6 @@ export default class Todo {
     dueDate,
     description,
     checked,
-    // note,
     // checklist
   }) {
     this.id = crypto.randomUUID();
@@ -14,8 +13,22 @@ export default class Todo {
     this.dueDate = dueDate;
     this.description = description || "no description";
     this.checked = checked || false;
-    // this.note = note
     // this.checklist = checklist
+  }
+
+  updateTodo({
+    title,
+    priority,
+    dueDate,
+    description,
+    // checklist
+  }) {
+    this.title = title ? title : this.title;
+    this.priority = priority ? title : this.priority;
+    this.dueDate = dueDate ? title : this.dueDate;
+    this.description = description
+      ? title
+      : this.description || "no description";
   }
 
   changeCheckedState() {

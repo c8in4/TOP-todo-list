@@ -143,6 +143,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: var(--clr-text);
 
+  position: relative;
   height: 100dvh;
   width: 100dvw;
   display: flex;
@@ -182,8 +183,7 @@ body {
 
   .projectCard {
     overflow-y: scroll;
-    flex: 1 0 30ch;
-    max-width: 35ch;
+    flex: 0 0 32ch;
     position: relative;
 
     display: flex;
@@ -231,18 +231,23 @@ body {
         border-left: 0.5rem solid var(--clr-info);
         position: relative;
 
-
         .editAndDeleteButtons {
           button {
             height: 1.5rem;
           }
         }
+
+        .dueDate {
+          font-size: 0.8rem;
+          color: var(--clr-text-muted);
+        }
+
+        .description {
+          color: var(--clr-text);
+        }
       }
     }
 
-    p {
-      color: var(--clr-text-muted);
-    }
   }
 
   footer {
@@ -256,10 +261,7 @@ body {
 .editAndDeleteButtons {
   display: flex;
   gap: 0.5rem;
-
-  /* position: absolute;
-  top: 0.5rem;
-  right: 0.5rem; */
+  margin-left: auto;
 
   button {
     height: 1.8rem;
@@ -276,10 +278,8 @@ button:hover {
 
 .projectHeader,
 .todoHeader {
-
-
   display: flex;
-  justify-content: space-between;
+  gap: 0.5rem;
   align-items: center;
 }
 
@@ -290,4 +290,33 @@ button:hover {
 
 .hidden {
   display: none;
+}
+
+dialog {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 0;
+  border-radius: 0.5rem;
+  border: 0.1rem solid var(--clr-border);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+
+  header {
+    background-color: var(--clr-secondary);
+  }
+
+  form {
+    padding: 1rem;
+  }
+}
+
+dialog::backdrop {
+  background-image: var(--clr-bg);
+  backdrop-filter: blur(0.25rem);
 }

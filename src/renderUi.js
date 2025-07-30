@@ -2,7 +2,15 @@ import EditIcon from "./icons/edit-icon.png";
 import DeleteIcon from "./icons/delete-icon.png";
 import database from "./database";
 import { saveData } from "./localStorageIO";
-import eventListeners from "./eventListeners";
+import {
+  deleteButtonHandler,
+  editButtonHandler,
+  newProjectModal,
+  newTodoModal,
+  saveModalHandler,
+  toggleCheckbox,
+  toggleDescription,
+} from "./eventHandlers";
 
 const PRIORITY_COLORS = {
   low: "var(--clr-info)",
@@ -23,7 +31,7 @@ export default () => {
 function createProjectCard(project) {
   const container = document.createElement("div");
   container.classList.add("projectCard");
-  container.dataset.id = project.id;
+  container.dataset.projectId = project.id;
 
   const headerContainer = document.createElement("div");
   headerContainer.classList.add("projectHeader");
@@ -54,12 +62,13 @@ function createTodoList(todoList) {
 
 function createTodo(todo) {
   const todoContainer = document.createElement("div");
-  todoContainer.dataset.id = todo.id;
+  todoContainer.dataset.todoId = todo.id;
   todoContainer.classList.add("todoItem");
   todoContainer.style.borderLeftColor = PRIORITY_COLORS[todo.priority];
 
-  // const checkbox = document.createElement('input')
-  // checkbox.type = 'checkbox'
+  const checkbox = document.createElement("input");
+  checkbox.classList.add("checkbox");
+  checkbox.type = "checkbox";
 
   const todoHeader = document.createElement("div");
   todoHeader.classList.add("todoHeader");
@@ -68,29 +77,21 @@ function createTodo(todo) {
   title.innerText = todo.title;
 
   if (todo.checked) {
-    // checkbox.checked = true
+    checkbox.checked = true;
     title.classList.add("lineThrough");
   }
 
-  todoHeader.append(title, createEditAndDeleteButtons());
+  todoHeader.append(checkbox, title, createEditAndDeleteButtons());
 
   const dueDate = document.createElement("p");
   dueDate.innerText = "due: " + todo.dueDate;
-
-  // const priority = document.createElement("p");
-  // priority.innerText = "priority: " + todo.priority;
+  dueDate.classList.add("dueDate");
 
   const description = document.createElement("p");
   description.innerText = todo.description;
   description.classList.add("hidden", "description");
 
-  todoContainer.append(
-    todoHeader,
-    // checkbox,
-
-    dueDate,
-    description,
-  );
+  todoContainer.append(todoHeader, dueDate, description);
   return todoContainer;
 }
 
@@ -99,12 +100,14 @@ function createEditAndDeleteButtons() {
   container.classList.add("editAndDeleteButtons");
 
   const editButton = document.createElement("button");
+  editButton.classList.add("editButton");
   const editImg = document.createElement("img");
   editImg.classList.add("editImg");
   editImg.src = EditIcon;
   editButton.appendChild(editImg);
 
   const deleteButton = document.createElement("button");
+  deleteButton.classList.add("deleteButton");
   const deleteImg = document.createElement("img");
   deleteImg.classList.add("deleteImg");
   deleteImg.src = DeleteIcon;
@@ -115,6 +118,44 @@ function createEditAndDeleteButtons() {
 }
 
 function setupEventListeners() {
-  const body = document.querySelector("body");
-  body.addEventListener("click", eventListeners);
+  const newProjectButton = document.querySelector("button.newProject");
+  newProjectButton.addEventListener("click", newProjectModal);
+
+  const newTodoButtons = document.querySelectorAll("button.newTodo");
+  if (newTodoButtons) {
+    newTodoButtons.forEach((button) =>
+      button.addEventListener("click", newTodoModal),
+    );
+  }
+
+  const deleteButtons = document.querySelectorAll(".deleteButton");
+  if (deleteButtons) {
+    deleteButtons.forEach((button) =>
+      button.addEventListener("click", deleteButtonHandler),
+    );
+  }
+
+  const todoItems = document.querySelectorAll(".todoItem");
+  if (todoItems) {
+    todoItems.forEach((todo) =>
+      todo.addEventListener("click", toggleDescription),
+    );
+  }
+
+  const checkboxes = document.querySelectorAll(".checkbox");
+  if (checkboxes) {
+    checkboxes.forEach((checkbox) =>
+      checkbox.addEventListener("click", toggleCheckbox),
+    );
+  }
+
+  const editButtons = document.querySelectorAll(".editButton");
+  if (editButtons) {
+    editButtons.forEach((button) =>
+      button.addEventListener("click", editButtonHandler),
+    );
+  }
+
+  const dialogFormButtons = document.querySelector(".dialogFormButtons");
+  dialogFormButtons.addEventListener("click", saveModalHandler);
 }
