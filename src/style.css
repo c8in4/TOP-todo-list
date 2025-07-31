@@ -205,8 +205,6 @@ body {
 
       font-weight: 900;
 
-      border-radius: 0.5rem;
-      border: none;
       margin: 1rem 1rem 0 1rem;
     }
 
@@ -265,14 +263,18 @@ body {
   button {
     height: 1.8rem;
     aspect-ratio: 1;
-    border-radius: 0.5rem;
-    border: none;
     background-color: var(--clr-bg-dark);
   }
 }
 
+button {
+  border-radius: 0.5rem;
+  border-color: var(--clr-border-muted);
+}
+
 button:hover {
   cursor: pointer;
+  border-color: var(--clr-border);
 }
 
 .projectHeader,
