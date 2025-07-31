@@ -19,6 +19,7 @@ export function createTodoDialog(headerText) {
   const todoTitleInput = createTextInput("Todo Title", "todoTitle");
 
   const groupDiv = document.createElement("div");
+  groupDiv.classList.add("priorityAndDueDate");
   const todoPriorityInput = createSelectInput("Priority:", "todoPriority");
   const todoDueDate = createDateInput("Due Date:", "todoDueDate");
   groupDiv.append(todoPriorityInput, todoDueDate);

@@ -235,11 +235,6 @@ body {
           }
         }
 
-        .dueDate {
-          font-size: 0.8rem;
-          color: var(--clr-text-muted);
-        }
-
         .description {
           color: var(--clr-text);
         }
@@ -267,6 +262,10 @@ body {
   }
 }
 
+small {
+  color: var(--clr-text-muted);
+}
+
 button {
   border-radius: 0.5rem;
   border-color: var(--clr-border-muted);
@@ -275,6 +274,7 @@ button {
 button:hover {
   cursor: pointer;
   border-color: var(--clr-border);
+  filter: brightness(1.25);
 }
 
 .projectHeader,
@@ -287,6 +287,11 @@ button:hover {
 .lineThrough {
   text-decoration: line-through;
   color: var(--clr-text-muted);
+}
+
+.overdue {
+  color: var(--clr-danger);
+  filter: brightness(1.5);
 }
 
 .hidden {
@@ -310,10 +315,56 @@ dialog {
 
   header {
     background-color: var(--clr-secondary);
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: center;
   }
 
   form {
     padding: 1rem;
+
+    input,
+    select,
+    textarea {
+      border-color: var(--clr-border);
+      border-radius: 0.5rem;
+      padding: 0 0.5rem;
+      max-width: 35ch;
+      resize: none;
+
+      background-color: var(--clr-bg-light);
+      color: var(--clr-text);
+    }
+
+    select {
+      height: 1.75rem;
+    }
+
+    #dialogFormContent {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .priorityAndDueDate {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .dialogFormButtons {
+      padding-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    button {
+      background-color: var(--clr-tertiary);
+      color: var(--clr-text);
+      font-weight: 900;
+      padding: 0 0.5rem;
+    }
   }
 }
 
