@@ -23,12 +23,10 @@ export default class Todo {
     description,
     // checklist
   }) {
-    this.title = title ? title : this.title;
-    this.priority = priority ? title : this.priority;
-    this.dueDate = dueDate ? title : this.dueDate;
-    this.description = description
-      ? title
-      : this.description || "no description";
+    this.title = title;
+    this.priority = priority;
+    this.dueDate = dueDate;
+    this.description = description;
   }
 
   changeCheckedState() {
