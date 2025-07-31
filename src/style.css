@@ -132,6 +132,7 @@ body.dark {
 /* END of resets and theming */
 
 body.dark {
+
   .editImg,
   .deleteImg {
     filter: invert(0.96);
@@ -154,6 +155,7 @@ body {
 
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
 
     button.newProject {
@@ -164,11 +166,12 @@ body {
 
       font-weight: 900;
 
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
       border-radius: 0.5rem;
-      border: none;
+      border-color: var(--clr-border);
     }
   }
+
 
   main {
     padding: 1rem;
@@ -199,13 +202,11 @@ body {
       color: var(--clr-text);
 
       height: 2rem;
-      aspect-ratio: 1;
 
       font-weight: 900;
 
       border-radius: 0.5rem;
       border: none;
-
       margin: 1rem 1rem 0 1rem;
     }
 

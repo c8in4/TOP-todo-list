@@ -1,37 +1,41 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo-List</title>
-  </head>
 
-  <body>
-    <dialog id="dialog">
-      <header>
-        <h4 id="dialogHeader">Dialog Header</h4>
-      </header>
-      <form id="dialogForm" method="dialog">
-        <div id="dialogFormContent"></div>
-        <div class="dialogFormButtons"></div>
-      </form>
-    </dialog>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo-List</title>
+</head>
 
+<body class="dark">
+  <dialog id="dialog">
     <header>
-      <h1>Todo-App</h1>
-
-      <button class="newProject">Add new Project</button>
+      <h4 id="dialogHeader">Dialog Header</h4>
     </header>
-    <main></main>
-    <footer>
-      <small>made by c8in4</small>
-    </footer>
+    <form id="dialogForm" method="dialog">
+      <div id="dialogFormContent"></div>
+      <div class="dialogFormButtons"></div>
+    </form>
+  </dialog>
 
-    <div class="theme-button" onclick="toggleTheme()">Switch Theme</div>
-    <script>
-      function toggleTheme() {
-        document.body.classList.toggle("dark");
-      }
-    </script>
-  </body>
+  <header>
+    <h1>Project Manager</h1>
+    <button class="newProject">Add Project</button>
+  </header>
+
+  <main>
+
+  </main>
+  <!-- <footer>
+    <small>made by c8in4</small>
+  </footer> -->
+
+  <!-- <div class="theme-button" onclick="toggleTheme()">Switch Theme</div> -->
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+</body>
+
 </html>
