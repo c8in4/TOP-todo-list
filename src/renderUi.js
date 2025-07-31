@@ -18,6 +18,12 @@ const PRIORITY_COLORS = {
   high: "var(--clr-danger)",
 };
 
+const PRIORITY_VALUES = {
+  low: 1,
+  normal: 0,
+  high: -1,
+};
+
 export default () => {
   const mainContainer = document.querySelector("main");
   mainContainer.innerText = "";
@@ -54,7 +60,18 @@ function createProjectCard(project) {
 function createTodoList(todoList) {
   const todosContainer = document.createElement("div");
   todosContainer.classList.add("todoList");
-  todoList.forEach((todo) => {
+  // const propertyToSortBy = "title";
+
+  const sortedByDueDate = todoList.sort(
+    (a, b) => new Date(a.dueDate) - new Date(b.dueDate),
+  );
+  const sortedByPriority = sortedByDueDate.sort(
+    (a, b) => PRIORITY_VALUES[a.priority] - PRIORITY_VALUES[b.priority],
+  );
+  const sortedByCheckedState = sortedByPriority.sort(
+    (a, b) => a.checked - b.checked,
+  );
+  sortedByCheckedState.forEach((todo) => {
     todosContainer.appendChild(createTodo(todo));
   });
   return todosContainer;
@@ -83,9 +100,12 @@ function createTodo(todo) {
 
   todoHeader.append(checkbox, title, createEditAndDeleteButtons());
 
-  const dueDate = document.createElement("p");
+  const dueDate = document.createElement("small");
   dueDate.innerText = "due: " + todo.dueDate;
   dueDate.classList.add("dueDate");
+  if (new Date(todo.dueDate) < new Date()) {
+    dueDate.classList.add("overdue");
+  }
 
   const description = document.createElement("p");
   description.innerText = todo.description;
