@@ -90,7 +90,7 @@ function createDateInput(label, id) {
 
   const input = document.createElement("input");
   input.type = "date";
-  input.valueAsDate = new Date();
+  // input.valueAsDate = new Date();
   input.id = id;
 
   inputLabel.append(labelText, input);

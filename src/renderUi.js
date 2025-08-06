@@ -101,7 +101,7 @@ function createTodo(todo) {
   todoHeader.append(checkbox, title, createEditAndDeleteButtons());
 
   const dueDate = document.createElement("small");
-  dueDate.innerText = "due: " + todo.dueDate;
+  if (todo.dueDate) dueDate.innerText = "due: " + todo.dueDate;
   dueDate.classList.add("dueDate");
   if (new Date(todo.dueDate) < new Date()) {
     dueDate.classList.add("overdue");
