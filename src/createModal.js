@@ -16,7 +16,7 @@ export function createTodoDialog(headerText) {
   resetDialog();
 
   dialogHeader.textContent = headerText;
-  const todoTitleInput = createTextInput("Todo Title", "todoTitle");
+  const todoTitleInput = createTextInput("To-Do Title", "todoTitle");
 
   const groupDiv = document.createElement("div");
   groupDiv.classList.add("priorityAndDueDate");

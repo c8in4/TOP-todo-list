@@ -51,7 +51,7 @@ function createProjectCard(project) {
 
   const todoButton = document.createElement("button");
   todoButton.classList.add("newTodo");
-  todoButton.innerText = "Add Todo";
+  todoButton.innerText = "Add To-Do";
 
   container.append(headerContainer, todoButton, todos);
   return container;
