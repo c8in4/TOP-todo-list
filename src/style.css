@@ -185,7 +185,8 @@ body {
 
   .projectCard {
     overflow-y: scroll;
-    flex: 0 0 32ch;
+    max-width: 40ch;
+    flex: 0 0 100%;
     position: relative;
 
     display: flex;
