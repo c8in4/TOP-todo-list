@@ -45,6 +45,7 @@ function createTextInput(label, id) {
   const input = document.createElement("input");
   input.id = id;
   input.placeholder = label;
+  input.required = true;
 
   inputLabel.append(labelText, input);
   return inputLabel;
@@ -116,6 +117,7 @@ function createFormButtons() {
   saveFormButton.id = "saveFormButton";
   saveFormButton.value = "default";
   saveFormButton.textContent = "Save";
+  // saveFormButton.type = "submit";
 
   const cancelFormButton = document.createElement("button");
   cancelFormButton.value = "cancelFormButton";

@@ -98,7 +98,9 @@ export function saveModalHandler(event) {
 
   if (formType == "newProject") {
     const projectName = dialogFrom.querySelector("#projectName");
-    database.addProject(new Project({ name: projectName.value }));
+    if (projectName.value) {
+      database.addProject(new Project({ name: projectName.value }));
+    }
   }
 
   if (formType == "newTodo") {
@@ -107,18 +109,19 @@ export function saveModalHandler(event) {
     const dueDate = dialogFrom.querySelector("#todoDueDate").value;
     const description = dialogFrom.querySelector("#todoDescription").value;
     const projectId = saveFormButton.dataset.projectId;
-
-    database.addTodo(
-      projectId,
-      new Todo({ title, priority, dueDate, description }),
-    );
+    if (title) {
+      database.addTodo(
+        projectId,
+        new Todo({ title, priority, dueDate, description }),
+      );
+    }
   }
 
   if (formType == "editProject") {
     const projectName = dialogFrom.querySelector("#projectName").value;
     const projectId = saveFormButton.dataset.projectId;
 
-    database.updateProject(projectId, projectName);
+    if (projectName) database.updateProject(projectId, projectName);
   }
   if (formType == "editTodo") {
     const title = dialogFrom.querySelector("#todoTitle").value;
@@ -127,11 +130,12 @@ export function saveModalHandler(event) {
     const description = dialogFrom.querySelector("#todoDescription").value;
     const projectId = saveFormButton.dataset.projectId;
     const todoId = saveFormButton.dataset.todoId;
-
-    database.updateTodo(
-      { projectId, todoId },
-      { title, priority, dueDate, description },
-    );
+    if (title) {
+      database.updateTodo(
+        { projectId, todoId },
+        { title, priority, dueDate, description },
+      );
+    }
   }
 
   render();

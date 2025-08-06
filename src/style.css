@@ -179,13 +179,17 @@ body {
 
     flex: 1;
     overflow-x: scroll;
+    scroll-snap-type: x proximity;
+    scroll-padding: 1rem;
     display: flex;
     gap: 1rem;
   }
 
   .projectCard {
+    scroll-snap-align: start;
     overflow-y: scroll;
     max-width: 40ch;
+    min-width: 20ch;
     flex: 0 0 100%;
     position: relative;
 
