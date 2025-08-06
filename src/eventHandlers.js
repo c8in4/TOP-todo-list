@@ -91,50 +91,58 @@ export function toggleDescription(event) {
 }
 
 export function saveModalHandler(event) {
-  if (event.target.id != "saveFormButton") return;
-  const formType = event.target.dataset.type;
-  const dialogFrom = document.querySelector("dialog form");
-  const saveFormButton = dialogFrom.querySelector("#saveFormButton");
+  if (event.target.id == "cancelFormButton") {
+    dialog.close();
+    return;
+  }
 
-  if (formType == "newProject") {
-    const projectName = dialogFrom.querySelector("#projectName");
-    if (projectName.value) {
-      database.addProject(new Project({ name: projectName.value }));
+  if (event.target.id == "saveFormButton") {
+    const formType = event.target.dataset.type;
+    const dialogFrom = document.querySelector("dialog form");
+    const saveFormButton = dialogFrom.querySelector("#saveFormButton");
+
+    console.log(event.target);
+
+    if (formType == "newProject") {
+      const projectName = dialogFrom.querySelector("#projectName");
+      if (projectName.value) {
+        database.addProject(new Project({ name: projectName.value }));
+      }
     }
-  }
 
-  if (formType == "newTodo") {
-    const title = dialogFrom.querySelector("#todoTitle").value;
-    const priority = dialogFrom.querySelector("#todoPriority").value;
-    const dueDate = dialogFrom.querySelector("#todoDueDate").value;
-    const description = dialogFrom.querySelector("#todoDescription").value;
-    const projectId = saveFormButton.dataset.projectId;
-    if (title) {
-      database.addTodo(
-        projectId,
-        new Todo({ title, priority, dueDate, description }),
-      );
+    if (formType == "newTodo") {
+      const title = dialogFrom.querySelector("#todoTitle").value;
+      const priority = dialogFrom.querySelector("#todoPriority").value;
+      const dueDate = dialogFrom.querySelector("#todoDueDate").value;
+      const description = dialogFrom.querySelector("#todoDescription").value;
+      const projectId = saveFormButton.dataset.projectId;
+      if (title) {
+        database.addTodo(
+          projectId,
+          new Todo({ title, priority, dueDate, description }),
+        );
+      }
     }
-  }
 
-  if (formType == "editProject") {
-    const projectName = dialogFrom.querySelector("#projectName").value;
-    const projectId = saveFormButton.dataset.projectId;
+    if (formType == "editProject") {
+      const projectName = dialogFrom.querySelector("#projectName").value;
+      const projectId = saveFormButton.dataset.projectId;
 
-    if (projectName) database.updateProject(projectId, projectName);
-  }
-  if (formType == "editTodo") {
-    const title = dialogFrom.querySelector("#todoTitle").value;
-    const priority = dialogFrom.querySelector("#todoPriority").value;
-    const dueDate = dialogFrom.querySelector("#todoDueDate").value;
-    const description = dialogFrom.querySelector("#todoDescription").value;
-    const projectId = saveFormButton.dataset.projectId;
-    const todoId = saveFormButton.dataset.todoId;
-    if (title) {
-      database.updateTodo(
-        { projectId, todoId },
-        { title, priority, dueDate, description },
-      );
+      if (projectName) database.updateProject(projectId, projectName);
+    }
+    if (formType == "editTodo") {
+      const title = dialogFrom.querySelector("#todoTitle").value;
+      const priority = dialogFrom.querySelector("#todoPriority").value;
+      const dueDate = dialogFrom.querySelector("#todoDueDate").value;
+      const description = dialogFrom.querySelector("#todoDescription").value;
+      const projectId = saveFormButton.dataset.projectId;
+      const todoId = saveFormButton.dataset.todoId;
+      if (title) {
+        database.updateTodo(
+          { projectId, todoId },
+          { title, priority, dueDate, description },
+        );
+      }
     }
   }
 

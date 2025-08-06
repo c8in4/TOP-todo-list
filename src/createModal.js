@@ -1,6 +1,7 @@
 const dialogHeader = document.querySelector("#dialogHeader");
 const dialogFormContent = document.querySelector("#dialogFormContent");
 const dialogFormButtons = document.querySelector(".dialogFormButtons");
+const dialog = document.querySelector("dialog");
 
 export function createProjectDialog(headerText) {
   resetDialog();
@@ -117,12 +118,13 @@ function createFormButtons() {
   saveFormButton.id = "saveFormButton";
   saveFormButton.value = "default";
   saveFormButton.textContent = "Save";
-  // saveFormButton.type = "submit";
+  saveFormButton.type = "submit";
 
   const cancelFormButton = document.createElement("button");
-  cancelFormButton.value = "cancelFormButton";
+  cancelFormButton.id = "cancelFormButton";
   cancelFormButton.formMethod = "dialog";
   cancelFormButton.textContent = "Cancel";
+  cancelFormButton.type = "button";
 
   dialogFormButtons.append(saveFormButton, cancelFormButton);
 }
