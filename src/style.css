@@ -148,6 +148,7 @@ body {
   width: 100dvw;
   display: flex;
   flex-direction: column;
+  overscroll-behavior: contain;
 
   header {
     background-color: var(--clr-primary);
@@ -181,6 +182,7 @@ body {
     overflow-x: scroll;
     scroll-snap-type: x proximity;
     scroll-padding: 1rem;
+    overscroll-behavior: contain;
     display: flex;
     gap: 1rem;
   }
